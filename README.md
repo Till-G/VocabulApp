@@ -1,2 +1,2 @@
 # VocabulApp
-Coole App von coolen Leuten.
+Vokabeln mit Karteikarten lernen, nur online.

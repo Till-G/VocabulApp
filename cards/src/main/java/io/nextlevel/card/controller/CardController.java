@@ -17,19 +17,10 @@ public class CardController {
 
     private final CardService service;
 
-    @GetMapping("/add")
-    public void addDefaultCard(){
-        service.addDefaultCard();
-    }
-
     @PostMapping("/add")
     public Card addCard(@RequestBody Card card){
         return service.addCard(card);
     }
-//    @GetMapping("/{language}/{word}")
-//    public Card findCard(@PathVariable("language") String language,@PathVariable("word") String word){
-//        return service.findCard(language, word);
-//    }
 
     @GetMapping("/library/{language}")
     public Iterable<Card> getAllCardsForLanguage(@PathVariable("language") String language){

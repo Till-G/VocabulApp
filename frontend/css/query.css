@@ -18,7 +18,7 @@ body{
 	background: #fff;
 }
 section{
-	min-height: 90vh;
+	min-height: 87vh;
 	padding: 0 9%;
 	padding-top: 7.5rem;
 }
@@ -57,7 +57,7 @@ header .navbar{
 	margin-right: 250px;
 }
 header .navbar a{
-	display: inline-block;
+	display: fixed;
 	font-size: 1.7rem;
 	text-align: center;
 	color: #333;
@@ -65,8 +65,46 @@ header .navbar a{
 	padding: 10px;
 }
 .create{
-	background-color: #ffb96b;
+	background-color: #ffb090;
 	border-radius: 8px;
+}
+.circle{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #7bdceb;
+	clip-path: circle(550px at left 800px);
+}
+.circle1{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #f1deff;
+	clip-path: circle(400px at right 500px);
+}
+.query{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	padding-bottom: 4rem;
+}
+.languages{
+	padding: 8px 12px;
+	color: #333;
+	background-color: #dfdaff;
+	border: 1px solid #dfdaff;
+	cursor: pointer;
+	border-radius: 5px;
+}
+.languages:focus,
+.languages:hover{
+	outline: none;
+	border: 1px solid #dfdaff;
 }
 
 

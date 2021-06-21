@@ -1,0 +1,96 @@
+:root{
+	--purple: #d9b3ff;
+	--blue: #7bdceb;
+	--gradient: linear-gradient(90deg, var(--purple), var(--blue));
+}
+*{
+	font-family: 'Arial', sans-serif;
+	margin: 0;
+	padding: 0;
+	box-sizin: border-box;
+	text-decoration: none;
+}
+html{
+	font-size: 55%;
+	overflow-x: hidden;
+}
+body{
+	background: #fff;
+}
+section{
+	min-height: 90vh;
+	padding: 0 9%;
+	padding-top: 7.5rem;
+}
+.btn{
+	display: inline-block;
+	margin-top: 1rem;
+	padding: .8rem 3rem;
+	border-radius: 5rem;
+	background: var(--gradient);
+	font-size: 1.7rem;
+	color: #fff;
+	cursor: pointer;
+	box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+	transition: all .3s ease-out;
+}
+.btn:hover{
+	transform: scale(1.1);
+}
+header{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background: #fff;
+	box-shadow: 0 .5rem 1rem rgba(0,0,0,.2);
+	padding: 2rem 9%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+header .logo{
+	position: relative;
+	max-width: 120px;
+}
+header .navbar{
+	margin-right: 250px;
+}
+header .navbar a{
+	display: inline-block;
+	font-size: 1.7rem;
+	text-align: center;
+	color: #333;
+	margin: 5px;
+	padding: 10px;
+}
+.create{
+	background-color: #ffb96b;
+	border-radius: 8px;
+}
+.home{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-size: cover;
+	background-position: center;
+}
+.home .image img{
+	width: 40vw;
+}
+.home .content h3{
+	font-size: 6.5rem;
+	font-weight: 500;
+	color: #333;
+}
+.home .content h3 span{
+	color: #7bdceb;
+	font-size: 1.5em;
+	font-weight: 900;
+}
+.home .content p{
+	font-size: 1.7rem;
+	color: #666;
+	padding: 1rem 0;
+}
+

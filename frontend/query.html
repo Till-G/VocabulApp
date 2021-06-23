@@ -36,6 +36,7 @@
 	<section class="query" id="query">
 	<div class="box-container">
 		<div class="box">
+		<div>
 		<div class="selection">
 		<label>From:</label>
 		<select name="languages" id="languages" class="languages" required>
@@ -56,8 +57,20 @@
 				<option value="spanish">Español</option>
 		</select>
 		</div>
+		</div>
 		<div>
-		<input type="submit" class="btn" style="border: none; margin-right: 1.5rem; float: right" value="Submit">
+		<div class="selection">
+		<img style="float: left;height: 2.5rem" src="images/speedometer.png" alt="">
+		<select style="margin-left: 4px" name="languages" id="languages" class="languages" required>
+				<option value="" selected disabled>Select a difficulty:</option>
+				<option value="german">Easy</option>
+				<option value="english">Medium</option>
+				<option value="turkish">Hard</option>
+		</select>
+		</div>
+		</div>
+		<div>
+		<input type="submit" class="btn" style="border: none; margin-top: 1.5rem; margin-right: 1.5rem; float: right" value="Submit">
 		</div>
 		</div>
 		</div>

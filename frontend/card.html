@@ -4,6 +4,10 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>VocabulApp</title>
+	
+	<script type="text/javascript" src="./script/VocabulAppAPI.js"></script>
+    <script type="text/javascript" src="./script/main.js"></script>
+	
 	<link rel="stylesheet" href="css/card.css">
 </head>
 <body>
@@ -26,7 +30,7 @@
 			<figcaption style="margin-left: 90px"><a href="https://de.freepik.com/fotos-vektoren-kostenlos/geschaeft" style="text-decoration: none; font-size: 8;">Geschäft Vektor erstellt von vectorjuice - de.freepik.com</a></figcaption>
 		</div>
 		
-		<form action="">
+		<form method="post" action="">
 			<h1 class="heading">Create a new card</h1>
 			<div class="inputBox">
 				<input type="text" placeholder="Name of the set" required>
@@ -43,7 +47,7 @@
 			<div class="inputBox">
 				<input type="text" placeholder="Español" required>
 			</div>
-			<input type="submit" class="btn" style="border: none; float: right" value="Save">
+			<input type="submit" class="btn" style="border: none; float: right" onclick="save()" value="Save">
 		</form>
 	</section>
 	

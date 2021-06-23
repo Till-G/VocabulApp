@@ -7,11 +7,14 @@
 	font-family: 'Arial', sans-serif;
 	margin: 0;
 	padding: 0;
-	box-sizin: border-box;
+	box-sizing: border-box;
 	text-decoration: none;
+	outline: none;
+	border: none;
+	text-transform: capitalize;
 }
 html{
-	font-size: 55%;
+	font-size: 62.5%;
 	overflow-x: hidden;
 }
 body{
@@ -57,12 +60,22 @@ header .navbar{
 	margin-right: 250px;
 }
 header .navbar a{
-	display: inline-block;
+	display: fixed;
 	font-size: 1.7rem;
 	text-align: center;
 	color: #333;
-	margin: 5px;
+	margin-left: 2rem;
 	padding: 10px;
+}
+header input{
+	display: none;
+}
+header label{
+	font-size: 3rem;
+	color: #ffb090);
+	cursor: pointer;
+	visibility: hidden;
+	opasity: 0;
 }
 .create{
 	background-color: #ffb090;
@@ -94,3 +107,39 @@ header .navbar a{
 	padding: 1rem 0;
 }
 
+@media (max-width: 1200px){
+	html{
+		font-size: 55%;
+	}
+}
+@media (max-width: 768px){
+	header label{
+		visibility: visible;
+		opasity: 1;
+	}
+	header .navbar{
+		position: absolute;
+		top: 100%;
+		left: 0;
+		width: 100%;
+		background: #fff;
+		padding: 1rem 2rem;
+		border-top: .1rem solid rgba(0,0,0,.2);
+		box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+		transform-origin: top;
+		transform: scaleY(0);
+		opasity: 0;
+	}
+	header .navbar a{
+		display: block;
+		margin: 2rem 0;
+		font-size: 2rem;
+	}
+	header input:checked ~ .navbar{
+		transform: scaleY(1);
+		opasity: 1;
+	}
+	header input:checked ~ label::before{
+		content: '\f00d';
+	}
+}

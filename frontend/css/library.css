@@ -63,7 +63,7 @@ header .navbar{
 	margin-right: 250px;
 }
 header .navbar a{
-	display: inline-block;
+	display: fixed;
 	font-size: 1.7rem;
 	text-align: center;
 	color: #333;

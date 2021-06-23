@@ -40,7 +40,7 @@ section{
 	transform: scale(1.1);
 }
 header{
-	position: fixed;
+	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -68,7 +68,7 @@ header input{
 }
 header label{
 	font-size: 3rem;
-	color: #ffb090);
+	color: #ffb090;
 	cursor: pointer;
 	visibility: hidden;
 	opasity: 0;

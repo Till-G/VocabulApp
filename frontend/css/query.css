@@ -40,7 +40,7 @@ section{
 	transform: scale(1.1);
 }
 header{
-	position: fixed;
+	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -68,7 +68,7 @@ header input{
 }
 header label{
 	font-size: 3rem;
-	color: #ffb090);
+	color: #ffb090;
 	cursor: pointer;
 	visibility: hidden;
 	opasity: 0;
@@ -84,7 +84,8 @@ header label{
 	width: 100%;
 	height: 100%;
 	background: #7bdceb;
-	clip-path: circle(500px at left 800px);
+	clip-path: circle(450px at left 800px);
+	x-index: 100;
 }
 .circle1{
 	position: absolute;
@@ -93,7 +94,8 @@ header label{
 	width: 100%;
 	height: 100%;
 	background: #f1deff;
-	clip-path: circle(400px at right 500px);
+	clip-path: circle(450px at right 0px);
+	x-index: 100;
 }
 .query .box-container{
 	display: flex;

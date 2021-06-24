@@ -81,47 +81,29 @@ header label{
 	background-color: #7bdceb;
 	border-radius: 8px;
 }
-.card{
+.home{
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	flex-wrap: wrap;
-	padding-bottom: 4rem;
 }
-.card .image{
-	flex: 1 1 40rem;
+.home .image img{
+	width: 40vw;
 }
-.card .image img{
-	width: 100%;
-	padding: 2rem;
+.home .content h3{
+	font-size: 5.5rem;
+	color: #333;
 }
-.card form{
-	flex: 1 1 40rem;
-	padding: 2rem 3rem;
-	border: .1rem solid rgba(0,0,0,.2);
-	box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
-	border-radius: .5rem;
-	background:#fff;
+.home .content h3 span{
+	color: #7bdceb;
+	font-size: 1.3em;
+	font-weight: 700;
 }
-.card form .heading{
-	text-align: left;
-	padding: 0;
-	padding-bottom: 2rem;
-}
-.card form .inputBox{
-	position: relative;
-}
-.card form .inputBox input{
-	width: 100%;
-	background: none;
-	color: #666;
-	margin: 1.5rem 0;
-	padding: .5rem 0;
+.home .content p{
 	font-size: 1.7rem;
-	border: none;
-	outline: none;
-	border-bottom: .1rem solid rgba(0,0,0,.1);
+	color: #666;
+	padding: 1rem 0;
 }
+
 @media (max-width: 1200px){
 	html{
 		font-size: 55%;

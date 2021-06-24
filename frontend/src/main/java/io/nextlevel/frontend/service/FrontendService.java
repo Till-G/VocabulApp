@@ -1,6 +1,5 @@
 package io.nextlevel.frontend.service;
 
-import com.netflix.discovery.converters.Auto;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

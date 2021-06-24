@@ -1,6 +1,4 @@
 	var myArray = []
-
-	buildTable(myArray)
 	
 	$.ajax({
 		method:'GET',

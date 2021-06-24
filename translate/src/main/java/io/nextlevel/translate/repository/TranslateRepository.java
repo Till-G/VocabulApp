@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TranslateRepository extends CrudRepository<Translate, Integer> {
-    Translate findTranslateByALanguageAndZLanguageAndAWord(String aLanguage, String zLanguage, String aWord);
+    Translate getTranslateByAusgangLanguageAndZielLanguageAndAusgangWord(String aLanguage, String zLanguage, String aWord);
 }

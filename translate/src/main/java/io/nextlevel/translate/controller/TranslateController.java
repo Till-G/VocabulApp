@@ -5,10 +5,13 @@ import io.nextlevel.translate.entity.Translate;
 import io.nextlevel.translate.service.TranslateService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Locale;
 
 /**
  * Endpoint translate
@@ -21,6 +24,7 @@ public class TranslateController {
     /**
      * Service implementiert Logik
      */
+    @Autowired
     private TranslateService service;
 
     @GetMapping()
@@ -35,7 +39,7 @@ public class TranslateController {
      * @param word searched wordf
      * @return
      */
-    @GetMapping("{alanguage}/{zlanguage}/{word}")
+    @GetMapping("/{alanguage}/{zlanguage}/{word}")
     public Translate translate(@PathVariable("alanguage") String alanguage,
                                @PathVariable("zlanguage") String zlanguage,
                                @PathVariable("word") String word){

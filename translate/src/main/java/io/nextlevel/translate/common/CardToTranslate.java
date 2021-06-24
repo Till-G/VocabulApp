@@ -15,38 +15,38 @@ public class CardToTranslate {
         zLanguage = zLanguage.toLowerCase(Locale.ROOT);
         switch (aLanguage) {
             case "german":
-                translate.setALanguage("german");
-                translate.setAWord(card.getGerman());
+                translate.setAusgangLanguage("german");
+                translate.setAusgangWord(card.getGerman().toLowerCase(Locale.ROOT));
                 break;
             case "english":
-                translate.setALanguage("english");
-                translate.setAWord(card.getEnglish());
+                translate.setAusgangLanguage("english");
+                translate.setAusgangWord(card.getEnglish().toLowerCase(Locale.ROOT));
                 break;
             case "turkish":
-                translate.setALanguage("turkish");
-                translate.setAWord(card.getTurkish());
+                translate.setAusgangLanguage("turkish");
+                translate.setAusgangWord(card.getTurkish().toLowerCase(Locale.ROOT));
                 break;
             case "spanish":
-                translate.setALanguage("spanish");
-                translate.setAWord(card.getSpanish());
+                translate.setAusgangLanguage("spanish");
+                translate.setAusgangWord(card.getSpanish().toLowerCase(Locale.ROOT));
                 break;
         }
         switch (zLanguage) {
             case "german":
-                translate.setZLanguage("german");
-                translate.setZWord(card.getGerman());
+                translate.setZielLanguage("german");
+                translate.setZielWord(card.getGerman().toLowerCase(Locale.ROOT));
                 break;
             case "english":
-                translate.setZLanguage("english");
-                translate.setZWord(card.getEnglish());
+                translate.setZielLanguage("english");
+                translate.setZielWord(card.getEnglish().toLowerCase(Locale.ROOT));
                 break;
             case "turkish":
-                translate.setZLanguage("turkish");
-                translate.setZWord(card.getTurkish());
+                translate.setZielLanguage("turkish");
+                translate.setZielWord(card.getTurkish().toLowerCase(Locale.ROOT));
                 break;
             case "spanish":
-                translate.setZLanguage("spanish");
-                translate.setZWord(card.getSpanish());
+                translate.setZielLanguage("spanish");
+                translate.setZielWord(card.getSpanish().toLowerCase(Locale.ROOT));
                 break;
         }
         return translate;

@@ -18,8 +18,8 @@ public class Translate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String aLanguage;
-    private String zLanguage;
-    private String aWord;
-    private String zWord;
+    private String ausgangLanguage;
+    private String zielLanguage;
+    private String ausgangWord;
+    private String zielWord;
 }

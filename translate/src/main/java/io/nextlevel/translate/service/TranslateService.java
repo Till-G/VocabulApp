@@ -10,21 +10,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Locale;
+
 @Service
 @Slf4j
 @AllArgsConstructor
 public class TranslateService {
     @Autowired
-    private final RestTemplate template;
+    private RestTemplate template;
     @Autowired
-    private final TranslateRepository repository;
+    private TranslateRepository repository;
 
 
     public Translate translate(String alanguage, String zlanguage, String word){
+        alanguage = alanguage.toLowerCase(Locale.ROOT);
+        zlanguage = zlanguage.toLowerCase(Locale.ROOT);
+        word = word.toLowerCase(Locale.ROOT);
         Translate translateReturn = new Translate();
-        translateReturn =  repository.findTranslateByALanguageAndZLanguageAndAWord(alanguage, zlanguage, word);
-        if(translateReturn.getZWord().isEmpty()){
-            Card cardResponse = template.getForObject("http://CARD-SERVICE/"+alanguage+"/"+word, Card.class);
+        translateReturn =  repository.getTranslateByAusgangLanguageAndZielLanguageAndAusgangWord(alanguage, zlanguage, word);
+        if(translateReturn == null){
+            Card cardResponse = template.getForObject("http://GATEWAY-SERVICE/card/"+alanguage+"/"+word, Card.class);
             translateReturn = CardToTranslate.CardToTranslate(cardResponse, alanguage, zlanguage);
             repository.save(translateReturn);
         }

@@ -111,35 +111,49 @@ header label{
 	clip-path: circle(450px at right 0px);
 	x-index: 100;
 }
-.query .box-container{
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-wrap: wrap;
-}
-.query .box-container .box{
-	position: relative;
-	flex: 1 1 20rem;
-	background: #fff;
-	border-radius: .5rem;
-	border: .1rem solid rgba(0,0,0,.2);
-	box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
-	margin: 1.5rem;
-	padding: 3rem 2rem;
-	border-radius: .5rem;
-	text-align: center;
-	transition: .2s linear;
-}
-.selection{
-	margin: 1.5rem;
-	float: left;
-}
-.query{
+.translate{
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-wrap: wrap;
 	padding-bottom: 4rem;
+}
+.translate .image{
+	flex: 1 1 40rem;
+}
+.translate .image img{
+	width: 100%;
+	padding: 2rem;
+}
+.translate form{
+	flex: 1 1 20rem;
+	padding: 2rem 3rem;
+	border: .1rem solid rgba(0,0,0,.2);
+	box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+	border-radius: .5rem;
+	background:#fff;
+	margin-left: 5rem;
+	margin-right: 5rem;
+	position: relative;
+}
+.translate form .heading{
+	text-align: left;
+	padding: 0;
+	padding-bottom: 2rem;
+}
+.translate form .inputBox{
+	position: relative;
+}
+.translate form .inputBox input{
+	width: 100%;
+	background: none;
+	color: #666;
+	margin: 1.5rem 0;
+	padding: .5rem 0;
+	font-size: 1.7rem;
+	border: none;
+	outline: none;
+	border-bottom: .1rem solid rgba(0,0,0,.1);
 }
 .languages{
 	padding: 8px 12px;

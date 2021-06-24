@@ -17,11 +17,41 @@ function queryAPI(queryUrl, dataBody = "") {
 		result = data;
 			
 	});	
+	
 
 	//return JsonObject
 	return result;
 
 }
+
+function queryAPI2(queryUrl, dataBody = "") {
+	
+	//Variable for returning
+	var result;
+
+    $.ajax({
+     type: "GET",
+	 url: queryUrl,
+	 async: false,
+	 data: {
+		 
+	 },
+	 
+	}).done(function (data) {
+		
+		//Parsing from string to JsonObject
+		data = JSON.parse(data)
+
+		result = data;
+			
+	});	
+	
+
+	//return JsonObject
+	return result;
+
+}
+
 
 //Calls a POST-Request to the Backend-Server
 function generateCard(card) {

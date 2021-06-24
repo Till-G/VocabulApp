@@ -5,27 +5,28 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>VocabulApp</title>
 	
+	<script type="text/javascript" src="./script/jQuery.js"></script>
 	<script type="text/javascript" src="./script/VocabulAppAPI.js"></script>
     <script type="text/javascript" src="./script/main.js"></script>
 
 	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
-	<link rel="stylesheet" href="./css/card.css">
+	<link rel="stylesheet" href="css/card.css">
 </head>
 <body>
 
 <!--header section-->
 <header>
-	<a href="index.html"><img src="images/LogoVS.jpg" class="logo"></a>
+	<a href="./index.html"><img src="images/LogoVS.jpg" class="logo"></a>
 	
 	<input type="checkbox" id="menu-bar">
 	<label for="menu-bar" class="fas fa-bars"></label>	
 	
 	<nav class="navbar">
-		<a class="create" style="color: white" href="card.html">Create</a>
-		<a href="index.html">Home</a>
-		<a href="library.html">Library</a>
-		<a href="translate.html">Translate</a>
-		<a href="query.html">Query</a>
+		<a class="create" style="color: white" href="./card.html">Create</a>
+		<a href="./index.html">Home</a>
+		<a href="./library.html">Library</a>
+		<a href="./translate.html">Translate</a>
+		<a href="./query.html">Query</a>
 	</nav>
 </header>
 
@@ -39,21 +40,21 @@
 		<form method="post" action="">
 			<h1 class="heading">Create a new card</h1>
 			<div class="inputBox">
-				<input type="text" placeholder="Name of the set" required>
+				<input id="name" type="text" placeholder="Name of the set" required>
 			</div>
 			<div class="inputBox">
-				<input type="text" placeholder="Deutsch" required>
+				<input id="german" type="text" placeholder="Deutsch" required>
 			</div>
 			<div class="inputBox">
-				<input type="text" placeholder="English" required>
+				<input id="english" type="text" placeholder="English" required>
 			</div>
 			<div class="inputBox">
-				<input type="text" placeholder="Türkçe" required>
+				<input id="turkish" type="text" placeholder="Türkçe" required>
 			</div>
 			<div class="inputBox">
-				<input type="text" placeholder="Español" required>
+				<input id="spanish" type="text" placeholder="Español" required>
 			</div>
-			<input type="submit" class="btn" style="border: none; float: right" onclick="save()" value="Save">
+			<input type="submit" class="btn" style="border: none; float: right" onclick="addCard()" value="Save">
 		</form>
 	</section>
 	

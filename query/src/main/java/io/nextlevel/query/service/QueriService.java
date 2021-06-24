@@ -25,14 +25,15 @@ public class QueriService {
     private static final String TURKISH = "turkish";
     private static final String SPANISH = "spanish";
 
-    public Iterable<Queri> query(String aLanguage, String zLanguage){
-        Iterable<Queri> list = queriRepository.findAll();
+    public Iterable<Queri> getAllLanguageAandZ(String aLanguage, String zLanguage){
+        Iterable<Queri> list = queriRepository.getQuerisByAusgangLanguageAndZielLanguage(aLanguage, zLanguage);
         return list;
     }
 
-//    public Iterable<Query> test(String aLanguage, String zLanguage, int difficulty){
-//        return repository.findAllByALanguageAndZLanguageAndDifficulty(aLanguage, zLanguage, difficulty);
-//    }
+    public Iterable<Queri> query(String aLanguage, String zLanguage, int difficulty){
+        Iterable<Queri> list = queriRepository.getQuerisByAusgangLanguageAndZielLanguageAndDifficulty(aLanguage, zLanguage, difficulty);
+        return list;
+    }
 
     public Iterable<Card> addCards (Iterable<Card> cardList){
         Iterable<Card> cards = cardRepository.findAll();

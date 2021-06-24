@@ -108,12 +108,12 @@ public class CardService {
     public Iterable<Card> pushAllToQuery(){
         Iterable<Card> allCards = repository.findAll();
         log.info("PUSH ALL TO QUERY");
-        allCards = template.postForObject("http://QUERY-SERVICE/query/addCards", allCards, Iterable.class);
+        allCards = template.postForObject("http://GATEWAY-SERVICE/query/addCards", allCards, Iterable.class);
         log.info("PUSHED: " + allCards);
         return allCards;
     }
     public String test(){
-        return template.getForObject("http://QUERY-SERVICE/query/test", String.class);
+        return template.getForObject("http://GATEWAY-SERVICE/query/test", String.class);
     }
 
 }

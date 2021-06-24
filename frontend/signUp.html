@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>VocabulApp</title>
+	
+	<script type="text/javascript" src="./script/jQuery.js"></script>
+	<script type="text/javascript" src="./script/VocabulAppAPI.js"></script>
+    <script type="text/javascript" src="./script/main.js"></script>
+
+	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+	<link rel="stylesheet" href="css/library.css">
+</head>
+<body>
+
+<!--header section-->
+<header>
+	<a href="./index.html"><img src="images/LogoVS.jpg" class="logo"></a>
+	
+	<input type="checkbox" id="menu-bar">
+	<label for="menu-bar" class="fas fa-bars"></label>	
+	
+	<nav class="navbar">
+		<a class="create" style="color: white" href="./card.html">Create</a>
+		<a href="./index.html">Home</a>
+		<a style="color: #ffb090" href="./library.html">Library</a>
+		<a href="./translate.html">Translate</a>
+		<a href="./query.html">Query</a>
+	</nav>
+</header>
+
+	<div class="split-screen">
+		<div class="left">
+			<section class="copy">
+				<h1>Explore</h1>
+				<p>Over 1000 courses</p>
+			</section>
+		</div>
+		
+		<div class="right">
+			<form>
+				<section class="copy">
+					<h2>Sign Up</h2>
+					<div class="login-container">
+						<p>Already have an account? <a href="#">
+						<strong>Log In</strong></a></p>
+					</div>
+				</section>
+				<div class="input-container name">
+					<label for="fname">Full Name</label>
+					<input id="fname" name="fname" type="text">
+				</div>
+				<div class="input-container email">
+					<label for="email">Email</label>
+					<input id="email" name="email" type="email">
+				</div>
+				<div class="input-container password">
+					<label for="password">Password</label>
+					<input id="password" name="password" type="password">
+					<i class="far fa-eye-slash"></i>
+				</div>
+				<div class="input-container cta">
+					<label class="checkbox-container">
+						<input type="checkbox">
+						<span class="checkmark"></span>
+						Sign up for email updates. 
+					</label>
+				</div>
+				<button class="signup-btn" type="submit">Sign Up</button>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,27 +1,7 @@
-function addCard(){
-    var card = {
-		name: $('#name').val(),
-		german: $('german').val(),
-		english: $('english').val(),
-		turkish: $('turkish').val(),
-		spanish: $('spanish').val(),
-	};
-	$.ajax({
-		url: 'http://localhost:8989/card/add',
-		type: 'POST',
-		data: JSON.springify(card),
-		success: function(data){
-			alert('Card added successfully')
-		},
-		error: function(){
-			alert('Card was not added');
-		}
-	});
-}
+	var myArray = []
 
-var myArray = []
-
-
+	buildTable(myArray)
+	
 	$.ajax({
 		method:'GET',
 		url:'http://localhost:8989/card/all',
@@ -50,3 +30,25 @@ var myArray = []
 
 		}
 	}
+	
+function addCard(){
+    var card = {
+		name: $('#name').val(),
+		german: $('german').val(),
+		english: $('english').val(),
+		turkish: $('turkish').val(),
+		spanish: $('spanish').val(),
+	};
+	$.ajax({
+		url: 'http://localhost:8989/card/add',
+		type: 'POST',
+		data: JSON.springify(card),
+		success: function(data){
+			alert('Card added successfully')
+		},
+		error: function(){
+			alert('Card was not added');
+		}
+	});
+}
+

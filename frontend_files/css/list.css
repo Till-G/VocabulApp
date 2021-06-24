@@ -87,14 +87,12 @@ header label{
 	background-color: #7bdceb;
 	border-radius: 8px;
 }
-.table{
-	margin: 45px 0;
-	font-size: 1.5em;
-	min-width: 400px;
+.cardTable{
+	margin: 25px 0;
+	font-size: 2em;
 }
-.table tr{
-	background-color: #009879;
-	color: #ffffff;
+.cardTable tr{
+	color: #333;
 	text-align: left;
 	font-weight: bold;
 }

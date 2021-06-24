@@ -1,0 +1,20 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\cards",
+    "\\cards\\src",
+    "\\cards\\src\\main",
+    "\\cards\\src\\main\\java",
+    "\\cards\\src\\main\\java\\io",
+    "\\cards\\src\\main\\java\\io\\nextlevel",
+    "\\cards\\src\\main\\java\\io\\nextlevel\\card",
+    "\\cards\\src\\main\\java\\io\\nextlevel\\card\\repository",
+    "\\cards\\src\\test",
+    "\\cards\\src\\test\\java",
+    "\\cards\\src\\test\\java\\io",
+    "\\cards\\src\\test\\java\\io\\nextlevel",
+    "\\cards\\src\\test\\java\\io\\nextlevel\\card"
+  ],
+  "SelectedNode": "\\cards\\src\\main\\java\\io\\nextlevel\\card\\service\\CardService.java",
+  "PreviewInSolutionExplorer": false
+}

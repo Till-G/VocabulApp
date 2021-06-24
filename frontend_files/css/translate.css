@@ -77,6 +77,10 @@ header label{
 	background-color: #ffb090;
 	border-radius: 8px;
 }
+.logIn{
+	background-color: #7bdceb;
+	border-radius: 8px;
+}
 .translate{
 	display: flex;
 	align-items: center;

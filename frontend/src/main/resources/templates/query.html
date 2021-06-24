@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>VocabulApp</title>
+	
+	<script type="text/javascript" src="./script/VocabulAppAPI.js"></script>
+    <script type="text/javascript" src="./script/main.js"></script>
+
+	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+	<link rel="stylesheet" href="css/query.css">
+</head>
+<body>
+<!--header section-->
+<header>
+	<a href="./index.html"><img src="images/LogoVS.jpg" class="logo"></a>
+	
+	<input type="checkbox" id="menu-bar">
+	<label for="menu-bar" class="fas fa-bars"></label>	
+	
+	<nav class="navbar">
+		<a class="create" style="color: white" href="./card.html">Create</a>
+		<a href="./index.html">Home</a>
+		<a href="./library.html">Library</a>
+		<a href="./translate.html">Translate</a>
+		<a style="color: #ffb090" href="./query.html">Query</a>
+	</nav>
+</header>
+
+
+<!--query section-->
+	<div class="circle"></div>
+	<div class="circle1"></div>
+	<form>
+	<section class="query" id="query">
+	<div class="box-container">
+		<div class="box">
+		<div>
+		<div class="selection">
+		<label>From:</label>
+		<select name="languages" id="languages" class="languages" required>
+				<option value="" selected disabled>Select a language:</option>
+				<option value="german">Deutsch</option>
+				<option value="english">English</option>
+				<option value="turkish">Türkçe</option>
+				<option value="spanish">Español</option>
+		</select>
+		</div>
+		<div class="selection">
+		<label>To:</label>
+		<select name="languages" id="languages" class="languages" required>
+				<option value="" selected disabled>Select a language:</option>
+				<option value="german">Deutsch</option>
+				<option value="english">English</option>
+				<option value="turkish">Türkçe</option>
+				<option value="spanish">Español</option>
+		</select>
+		</div>
+		</div>
+		<div>
+		<div class="selection">
+		<img style="float: left;height: 2.5rem" src="images/speedometer.png" alt="">
+		<select style="margin-left: 4px" name="languages" id="languages" class="languages" required>
+				<option value="" selected disabled>Select a difficulty:</option>
+				<option value="german">Easy</option>
+				<option value="english">Medium</option>
+				<option value="turkish">Hard</option>
+		</select>
+		</div>
+		</div>
+		<div>
+		<input type="submit" class="btn" style="border: none; margin-top: 1.5rem; margin-right: 1.5rem; float: right" value="Submit">
+		</div>
+		</div>
+		</div>
+	</section>
+	<figcaption><div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div></figcaption>
+	</form>
+</body>
+</html>

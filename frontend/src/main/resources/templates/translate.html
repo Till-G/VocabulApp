@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>VocabulApp</title>
+	
+	<script type="text/javascript" src="./script/VocabulAppAPI.js"></script>
+    <script type="text/javascript" src="./script/main.js"></script>
+
+	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+	<link rel="stylesheet" href="css/translate.css">
+</head>
+<body>
+
+<!--header section-->
+<header>
+	<a href="./index.html"><img src="images/LogoVS.jpg" class="logo"></a>
+	
+	<input type="checkbox" id="menu-bar">
+	<label for="menu-bar" class="fas fa-bars"></label>	
+	
+	<nav class="navbar">
+		<a class="create" style="color: white" href="./card.html">Create</a>
+		<a href="./index.html">Home</a>
+		<a href="./library.html">Library</a>
+		<a style="color: #ffb090" href="./translate.html">Translate</a>
+		<a href="./query.html">Query</a>
+	</nav>
+</header>
+
+<!--translate section-->
+	<section class="translate" id="translate">
+		<form method="post">
+			<select class="languages" required>
+				<option value="" selected disabled>Select a language:</option>
+				<option value="german">Deutsch</option>
+				<option value="english">English</option>
+				<option value="turkish">Türkçe</option>
+				<option value="spanish">Español</option>
+			</select>
+			<div class="inputBox">
+				<input type="text" placeholder="Enter a word..." required>
+			</div>
+			<input type="submit" class="btn" style="border: none; float: right" value="Translate"><br><br><br><br><br>
+			<select class="languages" required>
+				<option value="" selected disabled>Select a language:</option>
+				<option value="german">Deutsch</option>
+				<option value="english">English</option>
+				<option value="turkish">Türkçe</option>
+				<option value="spanish">Español</option>
+			</select>
+			
+			<div class="inputBox">
+				<input type="text" placeholder="Translation..." readonly>
+			</div>
+		</form>
+		<div class="image">
+			<img src="images/translate.jpg" alt="">
+			<figcaption style="margin-left: 90px"><a href="https://de.freepik.com/fotos-vektoren-kostenlos/schule">Schule Vektor erstellt von vectorjuice - de.freepik.com</a></figcaption>
+		</div>
+	</section>
+	
+</body>
+</html>

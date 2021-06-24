@@ -16,6 +16,10 @@ spring:
           uri: lb://TRANSLATE-SERVICE
           predicates:
             - Path=/translate/**
+        - id: frontend-service
+          uri: lb://FRONTEND-SERVICE
+          predicates:
+            - Path=/*/
 server:
   port: 8989
 eureka:

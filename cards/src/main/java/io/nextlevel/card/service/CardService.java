@@ -4,7 +4,10 @@ import io.nextlevel.card.entity.Card;
 import io.nextlevel.card.repository.CardRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
 import java.util.Locale;
 
 @Service
@@ -12,6 +15,7 @@ import java.util.Locale;
 @AllArgsConstructor
 public class CardService {
     private final CardRepository repository;
+    private final RestTemplate template;
 
     public Iterable<Card> getAllCardsForLanguage(String language){
         language = language.toLowerCase(Locale.ROOT);
@@ -37,6 +41,7 @@ public class CardService {
 
     public Card addCard(Card card){
         log.info("Adding Card: " + card);
+
         return repository.save(card);
     }
     public Iterable<Card> findAll(){
@@ -61,6 +66,54 @@ public class CardService {
     public void delete(int id){
         log.info("Deleted Card with id: "+ id);
         repository.deleteById(id);
+    }
+
+    public Card getSpecificCard(String language, String word){
+        language = language.toLowerCase(Locale.ROOT);
+        word = word.toLowerCase(Locale.ROOT).trim();
+        Iterable<Card> list = this.getAllCardsForLanguage(language);
+        Card returnCard = new Card();
+
+        switch(language){
+            case "german":
+                for(Card c : list){
+                    if(word.equals(c.getGerman().toLowerCase(Locale.ROOT)))
+                        returnCard = c;
+                }
+                break;
+            case "english":
+                for(Card c : list){
+                    if(word.equals(c.getEnglish().toLowerCase(Locale.ROOT)))
+                        returnCard = c;
+                }
+                break;
+            case "turkish":
+                for(Card c : list){
+                    if(word.equals(c.getTurkish().toLowerCase(Locale.ROOT)))
+                        returnCard = c;
+                }
+                break;
+            case "spanish":
+                for(Card c : list){
+                    if(word.equals(c.getSpanish().toLowerCase(Locale.ROOT)))
+                        returnCard = c;
+                }
+                break;
+            default:
+                log.info("Something went wrooooong");
+        }
+        return returnCard;
+    }
+
+    public Iterable<Card> pushAllToQuery(){
+        Iterable<Card> allCards = repository.findAll();
+        log.info("PUSH ALL TO QUERY");
+        allCards = template.postForObject("http://QUERY-SERVICE/query/addCards", allCards, Iterable.class);
+        log.info("PUSHED: " + allCards);
+        return allCards;
+    }
+    public String test(){
+        return template.getForObject("http://QUERY-SERVICE/query/test", String.class);
     }
 
 }

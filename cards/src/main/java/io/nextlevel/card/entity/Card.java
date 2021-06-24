@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Data //constructs getter/setter/constructor
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 public class Card {
@@ -20,6 +19,14 @@ public class Card {
     String turkish;
     String spanish;
 
+    public Card(int id, String set, String german, String english, String turkish, String spanish){
+        this.id = id;
+        this.set = set.trim();
+        this.german = german.trim();
+        this.english = english.trim();
+        this.turkish = turkish.trim();
+        this.spanish = spanish.trim();
+    }
 
     @Override
     public String toString() {

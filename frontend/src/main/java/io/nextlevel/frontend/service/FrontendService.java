@@ -1,5 +1,6 @@
 package io.nextlevel.frontend.service;
 
+import io.nextlevel.frontend.common.Card;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +20,9 @@ public class FrontendService {
         return template.getForObject("http://GATEWAY-SERVICE/card/pushAllToQuery", String.class);
     }
 
+    public Iterable<Card> getAllCards(String language){
+        return template.getForObject("http://GATEWAY-SERVICE/card/library/" +language, Iterable.class);
+    }
 
 
 }

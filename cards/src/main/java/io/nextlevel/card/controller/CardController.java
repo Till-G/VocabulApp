@@ -1,9 +1,11 @@
 package io.nextlevel.card.controller;
 
+import com.netflix.discovery.converters.Auto;
 import io.nextlevel.card.entity.Card;
 import io.nextlevel.card.service.CardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.ws.rs.Path;
@@ -17,8 +19,8 @@ import javax.ws.rs.Path;
 @RequiredArgsConstructor
 @CrossOrigin
 public class CardController {
-
-    private final CardService service;
+    @Autowired
+    private CardService service;
 
     @PostMapping("/add")
     public Card addCard(@RequestBody Card card){

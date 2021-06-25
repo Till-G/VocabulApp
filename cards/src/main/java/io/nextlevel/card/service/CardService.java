@@ -4,6 +4,7 @@ import io.nextlevel.card.entity.Card;
 import io.nextlevel.card.repository.CardRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -14,8 +15,10 @@ import java.util.Locale;
 @Slf4j
 @AllArgsConstructor
 public class CardService {
-    private final CardRepository repository;
-    private final RestTemplate template;
+    @Autowired
+    private CardRepository repository;
+    @Autowired
+    private RestTemplate template;
 
     public Iterable<Card> getAllCardsForLanguage(String language){
         language = language.toLowerCase(Locale.ROOT);

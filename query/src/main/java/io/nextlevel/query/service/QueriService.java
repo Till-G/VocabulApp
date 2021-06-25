@@ -40,11 +40,37 @@ public class QueriService {
         for(Card c : cardList){
             boolean contain = false;
             for(Card cr : cards){
+                int cId = c.getId();
+                int crId = cr.getId();
+                c.setId(0);
+                cr.setId(0);
                 // contain true if card c exists in entity card
-                contain = (cr.getEnglish().equals(c.getEnglish())||
-                        cr.getGerman().equals(c.getGerman())||
-                        cr.getSpanish().equals(c.getSpanish())||
-                        cr.getEnglish().equals(c.getEnglish()));
+                if(cr.equals(c))
+                    contain = true;
+                else if(cr.getGerman().equals(c.getGerman())){
+                    cr.setId(crId);
+                    if(c.getEnglish() != null && cr.getEnglish() == null){
+                        cr.setEnglish(c.getEnglish());
+                        queriRepository.save(CardToQueri.CardToQuery(cr, ENGLISH, GERMAN));
+                        queriRepository.save(CardToQueri.CardToQuery(cr, GERMAN, ENGLISH));
+                    }
+
+                    if(c.getTurkish() != null && cr.getTurkish() == null){
+                        cr.setTurkish(c.getTurkish());
+                        queriRepository.save(CardToQueri.CardToQuery(cr, GERMAN, TURKISH));
+                        queriRepository.save(CardToQueri.CardToQuery(cr, TURKISH, GERMAN));
+                    }
+
+                    if(c.getSpanish() != null && cr.getSpanish() == null){
+                        cr.setSpanish(c.getSpanish());
+                        queriRepository.save(CardToQueri.CardToQuery(cr, GERMAN, SPANISH));
+                        queriRepository.save(CardToQueri.CardToQuery(cr, SPANISH, GERMAN));
+                    }
+                    contain = true;
+                    cardRepository.save(cr);
+                }
+                c.setId(cId);
+                cr.setId(crId);
             }
             if(!contain) {
                 cardRepository.save(c);

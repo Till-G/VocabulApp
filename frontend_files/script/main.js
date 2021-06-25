@@ -1,4 +1,4 @@
-	var myArray = []
+/*	var myArray = []
 	
 	$.ajax({
 		method:'GET',
@@ -49,4 +49,38 @@ function addCard(){
 		}
 	});
 }
+*/
 
+const uri = 'https://localhost:8989/card/all';
+    const initDetails = {
+        method: 'get',
+        headers: {
+            "Content-Type": "application/json; charset=utf-8"
+        },
+    }
+    
+    function getData() {
+        fetch(uri, initDetails)
+        .then(response => {
+            if (response.status !== 200) {
+                console.log('Looks like there was a problem. Status Code: ' +
+                response.status);
+                return;
+            }
+    
+            console.log(response.headers.get("Content-Type"));
+            return response.json();
+            }
+        )
+        .then(myJson => {
+            console.log(JSON.stringify(myJson));
+        })
+        .catch(err => {
+            console.log('Error: ', err);
+        });
+    }
+    
+    window.onload=function() {
+        let myButton = document.getElementById("getData");
+        myButton.addEventListener('click', getData);
+    }

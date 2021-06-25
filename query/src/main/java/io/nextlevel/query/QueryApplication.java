@@ -9,10 +9,10 @@ import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 @EnableEurekaClient
-public class VocabulAppQueryApplication {
+public class QueryApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(VocabulAppQueryApplication.class, args);
+        SpringApplication.run(QueryApplication.class, args);
     }
 
     @Bean

@@ -14,6 +14,7 @@ public class TranslateApplication {
     public static void main(String[] args) {
         SpringApplication.run(TranslateApplication.class, args);
     }
+
     @Bean
     @LoadBalanced
     public RestTemplate restTemplate(){

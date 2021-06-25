@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/query")
 @Slf4j
 @RequiredArgsConstructor
+@CrossOrigin
 public class QueriController {
     @Autowired
     private QueriService service;

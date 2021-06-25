@@ -15,6 +15,7 @@ import javax.ws.rs.Path;
 @RequestMapping("/card")
 @Slf4j
 @RequiredArgsConstructor
+@CrossOrigin
 public class CardController {
 
     private final CardService service;

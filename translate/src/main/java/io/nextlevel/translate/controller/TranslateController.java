@@ -6,10 +6,7 @@ import io.nextlevel.translate.service.TranslateService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Locale;
 
@@ -20,6 +17,7 @@ import java.util.Locale;
 @RequestMapping("/translate")
 @Slf4j
 @RequiredArgsConstructor
+@CrossOrigin
 public class TranslateController {
     /**
      * Service implementiert Logik

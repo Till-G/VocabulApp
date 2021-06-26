@@ -6,7 +6,6 @@
 	<title>VocabulApp</title>
 	
 	<script type="text/javascript" src="./script/jQuery.js"></script>
-	<script type="text/javascript" src="./script/VocabulAppAPI.js"></script>
     <script type="text/javascript" src="./script/main.js"></script>
 
 	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
@@ -33,7 +32,7 @@
 <!--translate section-->
 	<section class="translate" id="translate">
 		<form method="post">
-			<select class="languages" required>
+			<select id="alanguages"class="languages" required>
 				<option value="" selected disabled>Select a language:</option>
 				<option value="german">Deutsch</option>
 				<option value="english">English</option>
@@ -41,10 +40,10 @@
 				<option value="spanish">Español</option>
 			</select>
 			<div class="inputBox">
-				<input type="text" placeholder="Enter a word..." required>
+				<input id="word" type="text" placeholder="Enter a word..." required>
 			</div>
-			<input type="submit" class="btn" style="border: none; float: right" value="Translate"><br><br><br><br><br>
-			<select class="languages" required>
+			<input type="button" id="getWord" class="btn" style="border: none; float: right" value="Translate"><br><br><br><br><br>
+			<select id="zlanguages" class="languages" required>
 				<option value="" selected disabled>Select a language:</option>
 				<option value="german">Deutsch</option>
 				<option value="english">English</option>
@@ -53,7 +52,7 @@
 			</select>
 			
 			<div class="inputBox">
-				<input type="text" placeholder="Translation..." readonly>
+				<input id="translateWord" type="text" placeholder="Translation..." readonly>
 			</div>
 		</form>
 		<div class="image">
@@ -64,3 +63,37 @@
 	
 </body>
 </html>
+
+<script>
+let uri = 'http://localhost:8080/translate/'+document.getElementById("alanguages").value+'/'+document.getElementById("zlanguages").value+'/'+document.getElementById("word").value;
+    const initDetails = {
+        method: 'get',
+        headers: {
+            "Content-Type": "application/json; charset=utf-8"
+        },
+    }
+    
+    function getWord() {
+        fetch('http://localhost:8080/translate/'+document.getElementById("alanguages").value+'/'+document.getElementById("zlanguages").value+'/'+document.getElementById("word").value, initDetails)
+        .then(response => {
+            if (response.status !== 200) {
+                console.log('Looks like there was a problem. Status Code: ' +
+                response.status);
+                return;
+            }
+            return response.json();
+            }
+        )
+        .then(myJson => {
+            document.getElementById("translateWord").value = JSON.stringify(myJson["zielWord"]);
+        })
+        .catch(err => {
+            console.log('Fetch Error: ', err);
+        });
+    }
+	
+	    $(document).ready(function() {
+        let myButton = document.getElementById("getWord");
+        myButton.addEventListener('click', getWord);
+		});
+</script>

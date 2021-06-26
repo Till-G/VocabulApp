@@ -1,6 +1,6 @@
 package io.nextlevel.translate.service;
 
-import io.nextlevel.translate.common.Card;
+
 import io.nextlevel.translate.common.CardToTranslate;
 import io.nextlevel.translate.entity.Translate;
 import io.nextlevel.translate.repository.TranslateRepository;
@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
 import java.util.Locale;
 
 @Service

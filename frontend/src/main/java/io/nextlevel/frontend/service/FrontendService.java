@@ -1,8 +1,6 @@
 package io.nextlevel.frontend.service;
 
-import io.nextlevel.frontend.common.Card;
-import io.nextlevel.frontend.common.Queri;
-import io.nextlevel.frontend.common.Translate;
+import io.nextlevel.frontend.common.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,12 +20,8 @@ public class FrontendService {
     private RestTemplate template;
 
     public String getAllCards(String language) throws JSONException {
-        Iterable<Card> cardList =  template.getForObject("http://GATEWAY-SERVICE/card/library/" +language, Iterable.class);
-        JSONArray jsonArray = new JSONArray();
-        for(Card c : cardList){
-            jsonArray.put(c.toJSON());
-        }
-        return jsonArray.toString();
+        CardList cardList =  template.getForObject("http://GATEWAY-SERVICE/card/library/" +language, CardList.class);
+        return cardList.toJSON().toString();
     }
 
     public String getCard(int id) throws JSONException {
@@ -50,21 +44,13 @@ public class FrontendService {
     }
 
     public String getAllLanguageAandZ(String aLanguage, String zLanguage) throws JSONException {
-        Iterable<Queri> qList = template.getForObject("http://GATEWAY-SERVICE/query/" + aLanguage + "/" +zLanguage, Iterable.class);
-        JSONArray jsonArray = new JSONArray();
-        for(Queri q : qList){
-            jsonArray.put(q.toJSON());
-        }
-        return jsonArray.toString();
+        QueriList qList = template.getForObject("http://GATEWAY-SERVICE/query/" + aLanguage + "/" +zLanguage, QueriList.class);
+        return qList.toJSON().toString();
     }
 
     public String query(String aLanguage, String zLanguage, int difficulty) throws JSONException {
-        Iterable<Queri> qList = template.getForObject("http://GATEWAY-SERVICE/query/" + aLanguage + "/" + zLanguage + "/" + difficulty, Iterable.class);
-        JSONArray jsonArray = new JSONArray();
-        for(Queri q : qList){
-            jsonArray.put(q.toJSON());
-        }
-        return jsonArray.toString();
+        QueriList qList = template.getForObject("http://GATEWAY-SERVICE/query/" + aLanguage + "/" + zLanguage + "/" + difficulty, QueriList.class);
+        return qList.toJSON().toString();
     }
 
     public String translate(String aLanguage, String zLanguage, String word) throws JSONException {

@@ -1,6 +1,5 @@
 package io.nextlevel.translate.controller;
 
-import io.nextlevel.translate.common.Card;
 import io.nextlevel.translate.entity.Translate;
 import io.nextlevel.translate.service.TranslateService;
 import lombok.RequiredArgsConstructor;
@@ -8,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Locale;
 
 /**

@@ -50,12 +50,6 @@ public class Queri {
 
         return json;
     }
-    public JSONArray toJSONArray(Iterable<Queri> qList) throws JSONException {
-        JSONArray jsonArray = new JSONArray();
-        for(Queri q : qList){
-            jsonArray.put(q.toJSON());
-        }
-        return jsonArray;
-    }
+
 
 }

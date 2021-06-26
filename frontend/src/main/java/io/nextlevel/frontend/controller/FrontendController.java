@@ -25,7 +25,7 @@ public class FrontendController {
 
     @GetMapping("/card/library/{language}")
     @CrossOrigin(origins = "*")
-    public String getAllCards(@PathVariable("language") String language) throws JSONException {
+    public String getLibraryCards(@PathVariable("language") String language) throws JSONException {
         return service.getAllCards(language);
     }
 

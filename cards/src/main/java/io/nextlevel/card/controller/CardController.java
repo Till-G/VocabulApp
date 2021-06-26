@@ -30,6 +30,7 @@ public class CardController {
     @GetMapping("/library/{language}")
     public CardList getAllCardsForLanguage(@PathVariable("language") String language){
         return new CardList(service.getAllCardsForLanguage(language));
+//        return cl;
     }
     @GetMapping("/all")
     public Iterable<Card> findAll(){

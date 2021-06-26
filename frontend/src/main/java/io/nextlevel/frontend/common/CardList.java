@@ -1,5 +1,7 @@
 package io.nextlevel.frontend.common;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -7,6 +9,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+@Data
+@NoArgsConstructor
 public class CardList {
     private Iterable<Card> cards;
 

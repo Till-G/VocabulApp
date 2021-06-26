@@ -50,9 +50,93 @@
     </tbody>
 </table>
 -->
+			<div class="inputBox">
+				<input id="german" type="text" placeholder="Translation...">
+			</div>
+			
+			<div class="inputBox">
+				<input id="spanish" type="text" placeholder="Translation...">
+			</div>
+			<div class="inputBox">
+				<input id="set" type="text" placeholder="Translation...">
+			</div>
+			<div class="inputBox">
+				<input id="turkish" type="text" placeholder="Translation...">
+			</div>
+			<div class="inputBox">
+				<input id="english" type="text" placeholder="Translation...">
+			</div>
+			<div class="inputBox">
+				<input id="id" type="text" placeholder="Translation...">
+			</div>
 
-
-<button id='getData'  class="btn">Get All Cards</button>
+<button id='getCard'  onclick="getCard()" class="btn">Get Card</button>
+<button id='putCard'  onclick="getCard()" class="btn">Change Card</button>
+<button id='deleteCard'  onclick="getCard()" class="btn">Delete Card</button>
 
 </body>
 </html>
+
+<script>
+    const initDetails = {
+        method: 'get',
+        headers: {
+            "Content-Type": "application/json; charset=utf-8"
+        },
+    }
+    
+    function getCard() {
+        fetch('http://localhost:8080/card/24', initDetails)
+        .then(response => {
+            if (response.status !== 200) {
+                console.log('Looks like there was a problem. Status Code: ' +
+                response.status);
+                return;
+            }
+            return response.json();
+            }
+        )
+        .then(myJson => {
+            document.getElementById("german").value = JSON.stringify(myJson["german"]);
+			document.getElementById("spanish").value = JSON.stringify(myJson["spanish"]);
+			document.getElementById("set").value = JSON.stringify(myJson["set"]);
+			document.getElementById("turkish").value = JSON.stringify(myJson["turkish"]);
+			document.getElementById("english").value = JSON.stringify(myJson["english"]);
+			document.getElementById("id").value = JSON.stringify(myJson["id"]);
+        })
+        .catch(err => {
+            console.log('Fetch Error: ', err);
+        });
+    }
+	
+	$(document).ready(function() {
+        let myButton = document.getElementById("getCard");
+        myButton.addEventListener('click', getCard);
+	});
+	
+		 function putCard() {
+        fetch('http://localhost:8080/card/24',{
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+			    "id": document.getElementById('id').value,
+				"set": document.getElementById('set').value,
+				"german": document.getElementById('german').value,
+				"english": document.getElementById('english').value,
+				"turkish": document.getElementById('turkish').value,
+				"spanish": document.getElementById('spanish').value
+			})
+		}).then(response => {
+            return response.json();
+           })
+		   .then(data => console.log(data))
+		   .catch(error => console.log('Error'))
+    }
+	
+	$(document).ready(function() {
+        let myButton = document.getElementById("putCard");
+        myButton.addEventListener('click', putCard);
+	});
+</script>

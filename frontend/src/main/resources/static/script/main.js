@@ -49,39 +49,28 @@ function addCard(){
 		}
 	});
 }
+
+const uri = 'https://localhost:8989/card/all';
+    
+    function getData(){
+		fetch('https://localhost:8989/card/all')
+		.then
+	}
 */
 
-const uri = 'http://localhost:8080/translate/german/english/aubergine';
-    const initDetails = {
-        method: 'get',
-        headers: {
-            "Content-Type": "application/json; charset=utf-8"
-        },
-    }
-    
-    function getData() {
+function getAllCards(){
+fetch('https://localhost:8989/card/all', { 
+	method: "GET", 
+	mode: 'cors', 
+	headers: { 'Content-Type': 'application/json',}
+	}).then(function(response) {
+    return response.json();
+  })
+  .then(function(data) {
+    console.log(data);
+  })
+  .catch(function(error) {
+    console.error(error);
+  });
+}
 
-        fetch(uri, initDetails)
-        .then(response => {
-            if (response.status !== 200) {
-                console.log('Looks like there was a problem. Status Code: ' +
-                response.status);
-                return;
-            }
-    
-            console.log(response.headers.get("Content-Type"));
-            return response.json();
-            }
-        )
-        .then(myJson => {
-            console.log(JSON.stringify(myJson));
-        })
-        .catch(err => {
-            console.log('Error: ', err);
-        });
-    }
-    
-    window.onload=function() {
-        let myButton = document.getElementById("getData");
-        myButton.addEventListener('click', getData);
-    }

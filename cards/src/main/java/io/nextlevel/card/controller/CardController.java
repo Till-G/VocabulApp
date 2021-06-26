@@ -66,5 +66,9 @@ public class CardController {
     }
 
 
+    @GetMapping("/addRandom")
+    public void addRandom(){
+        service.addRandom();
+    }
 
 }

@@ -65,7 +65,6 @@
 </html>
 
 <script>
-let uri = 'http://localhost:8080/translate/'+document.getElementById("alanguages").value+'/'+document.getElementById("zlanguages").value+'/'+document.getElementById("word").value;
     const initDetails = {
         method: 'get',
         headers: {
@@ -92,8 +91,8 @@ let uri = 'http://localhost:8080/translate/'+document.getElementById("alanguages
         });
     }
 	
-	    $(document).ready(function() {
+	$(document).ready(function() {
         let myButton = document.getElementById("getWord");
         myButton.addEventListener('click', getWord);
-		});
+	});
 </script>

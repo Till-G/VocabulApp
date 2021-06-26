@@ -67,7 +67,7 @@
 		<form id="cardForm">
 			<h1 class="heading">Create a new card</h1>
 			<div class="inputBox">
-				<input id="name" name="name"type="text" placeholder="Name of the set *" required>
+				<input id="set" name="name"type="text" placeholder="Name of the set *" required>
 			</div>
 			<div class="inputBox">
 				<input id="german" name="german" type="text" placeholder="Deutsch *" required>
@@ -81,9 +81,37 @@
 			<div class="inputBox">
 				<input id="spanish" name="spanish" type="text" placeholder="Español">
 			</div>
-			<input type="submit" class="btn" style="border: none; float: right" value="Save">
+			<input id="saveCard" type="button" class="btn" style="border: none; float: right" value="Save">
 		</form>
 	</section>
 	
 </body>
 </html>
+
+<script>
+	 function saveCard() {
+        fetch('http://localhost:8080/card/add',{
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+			    "id": 0,
+				"set": document.getElementById('set').value,
+				"german": document.getElementById('german').value,
+				"english": document.getElementById('english').value,
+				"turkish": document.getElementById('turkish').value,
+				"spanish": document.getElementById('spanish').value
+			})
+		}).then(response => {
+            return response.json();
+           })
+		   .then(data => console.log(data))
+		   .catch(error => console.log('Error'))
+    }
+	
+	$(document).ready(function() {
+        let myButton = document.getElementById("saveCard");
+        myButton.addEventListener('click', saveCard);
+	});
+</script>

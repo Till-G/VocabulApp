@@ -33,7 +33,7 @@
 <!--translate section-->
 	<section class="translate" id="translate">
 		<form method="post">
-			<select class="languages" required>
+			<select id="alanguages"class="languages" required>
 				<option value="" selected disabled>Select a language:</option>
 				<option value="german">Deutsch</option>
 				<option value="english">English</option>
@@ -41,10 +41,10 @@
 				<option value="spanish">Español</option>
 			</select>
 			<div class="inputBox">
-				<input type="text" placeholder="Enter a word..." required>
+				<input id="word" type="text" placeholder="Enter a word..." required>
 			</div>
-			<input type="submit" class="btn" style="border: none; float: right" value="Translate"><br><br><br><br><br>
-			<select class="languages" required>
+			<input type="button" id="getWord" class="btn" style="border: none; float: right" value="Translate"><br><br><br><br><br>
+			<select id="zlanguages" class="languages" required>
 				<option value="" selected disabled>Select a language:</option>
 				<option value="german">Deutsch</option>
 				<option value="english">English</option>
@@ -64,3 +64,56 @@
 	
 </body>
 </html>
+
+<script>
+const word = document.getElementById("word").value;
+console.log(word);
+
+var aLanguage = document.getElementById("alanguages");
+var alanguage = aLanguage.value;
+console.log(alanguage);
+
+var zLanguage = document.getElementById("zlanguages");
+var zlanguage = zLanguage.value;
+console.log(zlanguage);
+
+const uri = 'http://localhost:8080/translate/alanguage/zlanguage/word';
+    const initDetails = {
+        method: 'get',
+        headers: {
+            "Content-Type": "application/json; charset=utf-8"
+        },
+        mode: "cors"
+    }
+    
+    function getWord() {
+        fetch(uri, initDetails)
+        .then(response => {
+            if (response.status !== 200) {
+                console.log('Looks like there was a problem. Status Code: ' +
+                response.status);
+                return;
+            }
+            return response.json();
+            }
+        )
+        .then(myJson => {
+            console.log(JSON.stringify(myJson));
+        })
+        .catch(err => {
+            console.log('Fetch Error: ', err);
+        });
+    }
+    
+    window.onload=function() {
+        let myButton = document.getElementById("getWord");
+        myButton.addEventListener('click', getWord);
+    }
+</script>
+<!--
+ function getWord() {
+        fetch(uri, initDetails)
+			.then(res => res.json())
+			.then(data => console.log(data));
+	}
+-->

@@ -11,6 +11,33 @@
 
 	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 	<link rel="stylesheet" href="css/card.css">
+	<!--
+	<script>
+		const card = {
+			id: 0,
+			set: 'irem',
+			german: 'irem',
+			english: 'irem',
+			turkish: 'irem',
+			spanish: 'irem',
+		};
+		
+		fetch('http://localhost:8989/card/add', {
+			method: 'post',
+			body: JSON.stringify(card),
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		}).then(function (response){
+			return response.text();
+		}).then(function (text){
+			console.log(text);
+		}).catch(function (error){
+			console.error(error);
+		})
+	
+	</script>
+	-->
 </head>
 <body>
 
@@ -37,24 +64,24 @@
 			<figcaption style="margin-left: 90px"><a href="https://de.freepik.com/fotos-vektoren-kostenlos/geschaeft" style="text-decoration: none; font-size: 8;">Geschäft Vektor erstellt von vectorjuice - de.freepik.com</a></figcaption>
 		</div>
 		
-		<form method="post" action="">
+		<form id="cardForm">
 			<h1 class="heading">Create a new card</h1>
 			<div class="inputBox">
-				<input id="name" type="text" placeholder="Name of the set" required>
+				<input id="name" name="name"type="text" placeholder="Name of the set" required>
 			</div>
 			<div class="inputBox">
-				<input id="german" type="text" placeholder="Deutsch" required>
+				<input id="german" name="german" type="text" placeholder="Deutsch" required>
 			</div>
 			<div class="inputBox">
-				<input id="english" type="text" placeholder="English" required>
+				<input id="english" name="english" type="text" placeholder="English">
 			</div>
 			<div class="inputBox">
-				<input id="turkish" type="text" placeholder="Türkçe" required>
+				<input id="turkish" name="turkish" type="text" placeholder="Türkçe">
 			</div>
 			<div class="inputBox">
-				<input id="spanish" type="text" placeholder="Español" required>
+				<input id="spanish" name="spanish" type="text" placeholder="Español">
 			</div>
-			<input type="submit" class="btn" style="border: none; float: right" onclick="addCard()" value="Save">
+			<input type="submit" class="btn" style="border: none; float: right" value="Save">
 		</form>
 	</section>
 	

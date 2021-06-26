@@ -20,6 +20,8 @@ public class CardService {
     @Autowired
     private RestTemplate template;
 
+    private static int COUNTER = 0;
+
     public Iterable<Card> getAllCardsForLanguage(String language){
         language = language.toLowerCase(Locale.ROOT);
         Iterable<Card> list = null ;
@@ -44,7 +46,10 @@ public class CardService {
 
     public Card addCard(Card card){
         log.info("Adding Card: " + card);
-
+        this.COUNTER++;
+        if(this.COUNTER % 5 == 0){
+            this.pushAllToQuery();
+        }
         return repository.save(card);
     }
     public Iterable<Card> findAll(){

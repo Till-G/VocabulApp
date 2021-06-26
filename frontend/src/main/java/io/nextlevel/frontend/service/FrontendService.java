@@ -6,6 +6,9 @@ import io.nextlevel.frontend.common.Translate;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -18,16 +21,18 @@ public class FrontendService {
     @Autowired
     private RestTemplate template;
 
-    public String test(){
-        return template.getForObject("http://GATEWAY-SERVICE/card/pushAllToQuery", String.class);
+    public String getAllCards(String language) throws JSONException {
+        Iterable<Card> cardList =  template.getForObject("http://GATEWAY-SERVICE/card/library/" +language, Iterable.class);
+        JSONArray jsonArray = new JSONArray();
+        for(Card c : cardList){
+            jsonArray.put(c.toJSON());
+        }
+        return jsonArray.toString();
     }
 
-    public Iterable<Card> getAllCards(String language){
-        return template.getForObject("http://GATEWAY-SERVICE/card/library/" +language, Iterable.class);
-    }
-
-    public Card getCard(int id){
-        return template.getForObject("http://GATEWAY-SERVICE/card/" +id, Card.class);
+    public String getCard(int id) throws JSONException {
+        Card c = template.getForObject("http://GATEWAY-SERVICE/card/" +id, Card.class);
+        return c.toJSON().toString();
     }
 
     public void modifyCard(int id){
@@ -39,20 +44,32 @@ public class FrontendService {
         log.info("Deleted Card with id: " + id);
     }
 
-    public Card addCard(Card card){
-        return template.postForObject("http://GATEWAY-SERVICE/card/add", card, Card.class);
+    public String addCard(Card card) throws JSONException {
+        Card c = template.postForObject("http://GATEWAY-SERVICE/card/add", card, Card.class);
+        return c.toJSON().toString();
     }
 
-    public Iterable<Queri> getAllLanguageAandZ(String aLanguage, String zLanguage){
-        return template.getForObject("http://GATEWAY-SERVICE/query/" + aLanguage + "/" +zLanguage, Iterable.class);
+    public String getAllLanguageAandZ(String aLanguage, String zLanguage) throws JSONException {
+        Iterable<Queri> qList = template.getForObject("http://GATEWAY-SERVICE/query/" + aLanguage + "/" +zLanguage, Iterable.class);
+        JSONArray jsonArray = new JSONArray();
+        for(Queri q : qList){
+            jsonArray.put(q.toJSON());
+        }
+        return jsonArray.toString();
     }
 
-    public Iterable<Queri> query(String aLanguage, String zLanguage, int difficulty){
-        return template.getForObject("http://GATEWAY-SERVICE/query/" + aLanguage + "/" + zLanguage + "/" + difficulty, Iterable.class);
+    public String query(String aLanguage, String zLanguage, int difficulty) throws JSONException {
+        Iterable<Queri> qList = template.getForObject("http://GATEWAY-SERVICE/query/" + aLanguage + "/" + zLanguage + "/" + difficulty, Iterable.class);
+        JSONArray jsonArray = new JSONArray();
+        for(Queri q : qList){
+            jsonArray.put(q.toJSON());
+        }
+        return jsonArray.toString();
     }
 
-    public Translate translate(String aLanguage, String zLanguage, String word){
-        return template.getForObject("http://GATEWAY-SERVICE/translate/" + aLanguage + "/" + zLanguage + "/" + word, Translate.class);
+    public String translate(String aLanguage, String zLanguage, String word) throws JSONException {
+        Translate t = template.getForObject("http://GATEWAY-SERVICE/translate/" + aLanguage + "/" + zLanguage + "/" + word, Translate.class);
+        return t.toJSON().toString();
     }
 
 

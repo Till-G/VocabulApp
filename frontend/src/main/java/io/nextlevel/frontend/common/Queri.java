@@ -2,7 +2,9 @@ package io.nextlevel.frontend.common;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 @NoArgsConstructor
 @Data
@@ -36,4 +38,24 @@ public class Queri {
         else
             this.difficulty = HARD;
     }
+
+    public JSONObject toJSON() throws JSONException {
+        JSONObject json = new JSONObject();
+        json.put("id", this.getId());
+        json.put("ausgangLanguage", this.getAusgangLanguage());
+        json.put("zielLanguage", this.getZielLanguage());
+        json.put("ausgangWord", this.getAusgangWord());
+        json.put("zielWord", this.getZielWord());
+        json.put("difficulty", this.getDifficulty());
+
+        return json;
+    }
+    public JSONArray toJSONArray(Iterable<Queri> qList) throws JSONException {
+        JSONArray jsonArray = new JSONArray();
+        for(Queri q : qList){
+            jsonArray.put(q.toJSON());
+        }
+        return jsonArray;
+    }
+
 }

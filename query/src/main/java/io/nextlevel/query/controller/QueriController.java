@@ -12,19 +12,16 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/query")
 @Slf4j
 @RequiredArgsConstructor
-@CrossOrigin
 public class QueriController {
     @Autowired
     private QueriService service;
 
     @GetMapping("/{aLanguage}/{zLanguage}")
-    @ResponseBody
     public Iterable<Queri> getAllLanguageAandZ(@PathVariable("aLanguage") String aLanguage,
                                                @PathVariable("zLanguage") String zLanguage){
         return service.getAllLanguageAandZ(aLanguage, zLanguage);
     }
     @GetMapping("/{aLanguage}/{zLanguage}/{difficulty}")
-    @ResponseBody
     public Iterable<Queri> query(@PathVariable("aLanguage") String aLanguage,
                                 @PathVariable("zLanguage") String zLanguage,
                                 @PathVariable("difficulty") int difficulty){

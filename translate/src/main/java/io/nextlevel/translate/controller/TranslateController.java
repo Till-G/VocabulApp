@@ -17,7 +17,6 @@ import java.util.Locale;
 @RequestMapping("/translate")
 @Slf4j
 @RequiredArgsConstructor
-@CrossOrigin
 public class TranslateController {
     /**
      * Service implementiert Logik
@@ -38,7 +37,6 @@ public class TranslateController {
      * @return
      */
     @GetMapping("/{alanguage}/{zlanguage}/{word}")
-    @ResponseBody
     public Translate translate(@PathVariable("alanguage") String alanguage,
                                @PathVariable("zlanguage") String zlanguage,
                                @PathVariable("word") String word){

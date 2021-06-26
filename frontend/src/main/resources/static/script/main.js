@@ -51,7 +51,7 @@ function addCard(){
 }
 */
 
-const uri = 'https://localhost:8080/card/all';
+const uri = 'http://localhost:8080/translate/german/english/aubergine';
     const initDetails = {
         method: 'get',
         headers: {
@@ -60,6 +60,7 @@ const uri = 'https://localhost:8080/card/all';
     }
     
     function getData() {
+
         fetch(uri, initDetails)
         .then(response => {
             if (response.status !== 200) {

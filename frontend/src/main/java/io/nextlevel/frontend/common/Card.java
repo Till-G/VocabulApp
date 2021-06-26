@@ -1,8 +1,11 @@
 package io.nextlevel.frontend.common;
 
-import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 @Data //constructs getter/setter/constructor
 @NoArgsConstructor
@@ -30,5 +33,16 @@ public class Card {
                 "\nEnglish: " + getEnglish() +
                 "\nTurkish: " + getTurkish() +
                 "\nSpanish: " + getSpanish();
+    }
+    public JSONObject toJSON() throws JSONException {
+        JSONObject json = new JSONObject();
+        json.put("id", this.getId());
+        json.put("set", this.getSet());
+        json.put("german", this.getGerman());
+        json.put("english", this.getEnglish());
+        json.put("turkish", this.getTurkish());
+        json.put("spanish", this.getSpanish());
+
+        return json;
     }
 }

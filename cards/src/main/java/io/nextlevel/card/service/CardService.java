@@ -50,7 +50,8 @@ public class CardService {
         if(this.COUNTER % 5 == 0){
             this.pushAllToQuery();
         }
-        return repository.save(card);
+        Card c = new Card(card.getId(), card.getSet(), card.getGerman(), card.getEnglish(), card.getTurkish(), card.getSpanish());
+        return repository.save(c);
     }
     public Iterable<Card> findAll(){
         log.info("findAll-Method to find all Cards");

@@ -22,22 +22,13 @@ public class Card {
     public Card(int id, String set, String german, String english, String turkish, String spanish){
         this.id = id;
         this.set = set.trim();
-        if(german != null)
-            this.german = german.trim();
-        else
-            this.german = german;
-        if(english != null)
+        this.german = german.trim();
+        if(english != null && !english.equals(""))
             this.english = english.trim();
-        else
-            this.english = english;
-        if(turkish != null)
+        if(turkish != null && !turkish.equals(""))
             this.turkish = turkish.trim();
-        else
-            this.turkish = null;
-        if(spanish != null)
+        if(spanish != null && !spanish.equals(""))
             this.spanish = spanish.trim();
-        else
-            this.spanish = spanish;
     }
 
     @Override

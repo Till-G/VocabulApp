@@ -97,8 +97,8 @@ header label{
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: #7bdceb;
-	clip-path: circle(450px at left 800px);
+	background: black;
+	clip-path: circle(450px at left 0px);
 	x-index: 100;
 }
 .circle1{
@@ -107,99 +107,60 @@ header label{
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: #f1deff;
+	background: gold;
 	clip-path: circle(450px at right 0px);
 	x-index: 100;
 }
-.query .box-container{
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-wrap: wrap;
-}
-.query .box-container .box{
-	position: relative;
-	flex: 1 1 20rem;
-	background: #fff;
-	border-radius: .5rem;
-	border: .1rem solid rgba(0,0,0,.2);
-	box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
-	margin: 1.5rem;
-	padding: 3rem 2rem;
-	border-radius: .5rem;
+.container .heading{
+	margin-top: 12rem;
 	text-align: center;
-	transition: .2s linear;
+	color: #7bdceb;
+	font-weight: 2px;
+	font-size: 3.5rem;
 }
-.selection{
-	margin: 1.5rem;
-	float: left;
-}
-.query{
+.container{
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-wrap: wrap;
-	padding-bottom: 4rem;
 }
-.languages{
-	padding: 8px 12px;
-	color: #333;
-	background-color: #dfdaff;
-	border: 1px solid #dfdaff;
-	cursor: pointer;
-	border-radius: 5px;
-}
-.languages:focus,
-.languages:hover{
-	outline: none;
-	border: 1px solid #dfdaff;
-}
-
-.translate{
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-wrap: wrap;
-	padding-bottom: 4rem;
-}
-.translate .image{
-	flex: 1 1 40rem;
-}
-.translate .image img{
-	width: 100%;
-	padding: 2rem;
-}
-.translate form{
-	flex: 1 1 20rem;
-	padding: 2rem 3rem;
-	border: .1rem solid rgba(0,0,0,.2);
-	box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
-	border-radius: .5rem;
-	background:#fff;
-	margin-left: 5rem;
-	margin-right: 5rem;
+table{
+	width: 1500px;
+	margin-top: 30px;
 	position: relative;
+	border-collapse: collapse;
+	box-shadow: 0 5px 10px rgba(0,0,0,.1);
+	margin-bottom: 50px;
 }
-.translate form .heading{
+.cardTable thead tr{
+	background-color: #ffb090;
+}
+.cardTable thead th{
+	color: white;
 	text-align: left;
-	padding: 0;
-	padding-bottom: 2rem;
+	font-size: 1.3rem;
 }
-.translate form .inputBox{
-	position: relative;
+th{
+	text-align: left;
 }
-.translate form .inputBox input{
-	width: 100%;
-	background: none;
-	color: #666;
-	margin: 1.5rem 0;
-	padding: .5rem 0;
-	font-size: 1.7rem;
-	border: none;
-	outline: none;
-	border-bottom: .1rem solid rgba(0,0,0,.1);
+table, th, td{
+	border: 1px solid #000;
+	border-collapse: collapse;
 }
-
+th, td{
+	padding: 10px;
+}
+tr:nth-child(even){
+	background-color: #fff;
+	font-size: 1.3rem;
+}
+tr:nth-child(odd){
+	background-color: #f1f1f1;
+	font-size: 1.3rem;
+}
+tr:hover {
+	background-color: #ffe8df;
+}
 @media (max-width: 1200px){
 	html{
 		font-size: 55%;

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>VocabulApp</title>
+	
+	<script type="text/javascript" src="./script/jQuery.js"></script>
+	<script type="text/javascript" src="./script/VocabulAppAPI.js"></script>
+    <script type="text/javascript" src="script/main.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+	<link rel="stylesheet" href="css/spanishLibrary.css">
+	<style>
+		th{
+			color: #333;
+		}
+	</style>
+</head>
+<body>
+
+<!--header section-->
+<header>
+	<a href="./home.html"><img src="images/LogoVS.jpg" class="logo"></a>
+	
+	<input type="checkbox" id="menu-bar">
+	<label for="menu-bar" class="fas fa-bars"></label>	
+	
+	<nav class="navbar">
+		<a class="create" style="color: white" href="./card.html">Create</a>
+		<a href="./home.html">Home</a>
+		<a style="color: #ffb090" href="./library.html">Library</a>
+		<a href="./translate.html">Translate</a>
+		<a href="./query.html">Query</a>
+	</nav>
+</header>
+
+<!--tables section-->
+	<div class="container">
+	<h1 class="heading">Español</h1>
+	<table class="cardTable">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Set</th>
+				<th>Spanish</th>
+				<th>German</th>
+				<th>English</th>
+				<th>Turkish</th>
+			</tr>
+		</thead>
+		<tbody id="data">
+		<tr>
+		</tr>
+		</tbody>
+	</table>
+	</div>
+
+</body>
+</html>
+
+<script>
+const initDetails = {
+        method: 'get',
+        headers: {
+            "Content-Type": "application/json; charset=utf-8"
+        },
+    }
+    
+        fetch('http://localhost:8080/card/library/spanish', initDetails)
+        .then(response => {
+            if (response.status !== 200) {
+                console.log('Looks like there was a problem. Status Code: ' +
+                response.status);
+                return;
+            }
+            return response.json();
+            }
+        )
+        .then(myJson => {
+            console.log(JSON.stringify(myJson));
+			if(myJson.length > 0){
+				var temp = "";
+				myJson.forEach((u)=>{
+					temp += "<tr>";
+					temp += "<td>"+u.id+"</td>";
+					temp += "<td>"+u.set+"</td>";
+					temp += "<td>"+u.spanish+"</td>";
+					temp += "<td>"+u.german+"</td>";
+					if(u.english === undefined ){
+						temp += "<td>"+"-"+"</td>";
+					} else {
+						temp += "<td>"+u.english+"</td>";
+					}
+					if(u.turkish === undefined){
+						temp += "<td>"+"-"+"</td>";
+					} else {
+						temp += "<td>"+u.turkish+"</td>";
+					}
+				})
+				document.getElementById("data").innerHTML = temp;
+			}
+        })
+        .catch(err => {
+            console.log('Fetch Error: ', err);
+        });
+	
+</script>

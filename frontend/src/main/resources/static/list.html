@@ -67,12 +67,12 @@
 				<input id="english" type="text" placeholder="Translation...">
 			</div>
 			<div class="inputBox">
-				<input id="id" type="text" placeholder="Translation...">
+				<input id="id" type="text" placeholder="Translation..." readonly>
 			</div>
 
-<button id='getCard'  onclick="getCard()" class="btn">Get Card</button>
-<button id='putCard'  onclick="getCard()" class="btn">Change Card</button>
-<button id='deleteCard'  onclick="getCard()" class="btn">Delete Card</button>
+<button id='getCard' class="btn">Get Card</button>
+<button id='putCard' class="btn">Change Card</button>
+<button id='deleteCard' class="btn">Delete Card</button>
 
 </body>
 </html>
@@ -86,7 +86,7 @@
     }
     
     function getCard() {
-        fetch('http://localhost:8080/card/24', initDetails)
+        fetch('http://localhost:8080/card/17', initDetails)
         .then(response => {
             if (response.status !== 200) {
                 console.log('Looks like there was a problem. Status Code: ' +
@@ -114,19 +114,34 @@
         myButton.addEventListener('click', getCard);
 	});
 	
+	function deleteCard() {
+        fetch('http://localhost:8080/card/17',{
+			method: 'DELETE'
+		}).then(response => {
+            return response.json();
+           })
+		   .then(data => console.log(data))
+		   .catch(error => console.log('Error'))
+    }
+	
+	$(document).ready(function() {
+        let myButton = document.getElementById("deleteCard");
+        myButton.addEventListener('click', deleteCard);
+	});
+	
 		 function putCard() {
-        fetch('http://localhost:8080/card/24',{
+        fetch('http://localhost:8080/card/17',{
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
-			    "id": document.getElementById('id').value,
-				"set": document.getElementById('set').value,
-				"german": document.getElementById('german').value,
-				"english": document.getElementById('english').value,
-				"turkish": document.getElementById('turkish').value,
-				"spanish": document.getElementById('spanish').value
+			    id: document.getElementById('id').value,
+				set: document.getElementById('set').value,
+				german: document.getElementById('german').value,
+				english: document.getElementById('english').value,
+				turkish: document.getElementById('turkish').value,
+				spanish: document.getElementById('spanish').value
 			})
 		}).then(response => {
             return response.json();
@@ -139,4 +154,21 @@
         let myButton = document.getElementById("putCard");
         myButton.addEventListener('click', putCard);
 	});
+	
+	/*
+	function deleteCard() {
+        fetch('http://localhost:8080/card/24',{
+			method: 'DELETE'
+		}).then(response => {
+            return response.json();
+           })
+		   .then(data => console.log(data))
+		   .catch(error => console.log('Error'))
+    }
+	
+	$(document).ready(function() {
+        let myButton = document.getElementById("deleteCard");
+        myButton.addEventListener('click', deleteCard);
+	});
+	*/
 </script>

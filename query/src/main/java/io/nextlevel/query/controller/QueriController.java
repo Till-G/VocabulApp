@@ -18,21 +18,25 @@ public class QueriController {
     private QueriService service;
 
     @GetMapping("/{aLanguage}/{zLanguage}")
+    @ResponseBody
     public Iterable<Queri> getAllLanguageAandZ(@PathVariable("aLanguage") String aLanguage,
                                                @PathVariable("zLanguage") String zLanguage){
         return service.getAllLanguageAandZ(aLanguage, zLanguage);
     }
     @GetMapping("/{aLanguage}/{zLanguage}/{difficulty}")
+    @ResponseBody
     public Iterable<Queri> query(@PathVariable("aLanguage") String aLanguage,
                                 @PathVariable("zLanguage") String zLanguage,
                                 @PathVariable("difficulty") int difficulty){
         return service.query(aLanguage, zLanguage, difficulty);
     }
+
     @PostMapping("/addCards")
     public Iterable<Card> addCards(@RequestBody Iterable<Card> cardList){
         log.info("cardList arrived: " + cardList.toString());
         return service.addCards(cardList);
     }
+
     @GetMapping("/test")
     public String testy(){
         return "COOL";

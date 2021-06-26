@@ -51,7 +51,7 @@ function addCard(){
 }
 */
 
-const uri = 'https://localhost:8989/card/all';
+const uri = 'https://localhost:8080/card/all';
     const initDetails = {
         method: 'get',
         headers: {

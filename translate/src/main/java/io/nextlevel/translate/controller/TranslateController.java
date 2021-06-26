@@ -38,6 +38,7 @@ public class TranslateController {
      * @return
      */
     @GetMapping("/{alanguage}/{zlanguage}/{word}")
+    @ResponseBody
     public Translate translate(@PathVariable("alanguage") String alanguage,
                                @PathVariable("zlanguage") String zlanguage,
                                @PathVariable("word") String word){

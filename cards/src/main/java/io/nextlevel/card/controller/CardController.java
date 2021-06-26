@@ -62,15 +62,5 @@ public class CardController {
         return service.pushAllToQuery();
     }
 
-    @GetMapping("/test/query")
-    public String test(){
-        return service.test();
-    }
-
-
-    @GetMapping("/addRandom")
-    public void addRandom(){
-        service.addRandom();
-    }
 
 }

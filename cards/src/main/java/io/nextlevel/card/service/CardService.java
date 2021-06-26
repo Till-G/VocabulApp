@@ -118,21 +118,7 @@ public class CardService {
         Iterable<Card> allCards = repository.findAll();
         log.info("PUSH ALL TO QUERY");
         allCards = template.postForObject("http://GATEWAY-SERVICE/query/addCards", allCards, Iterable.class);
-        log.info("PUSHED: " + allCards);
         return allCards;
     }
-    public String test(){
-        return template.getForObject("http://GATEWAY-SERVICE/query/test", String.class);
-    }
 
-    public void addRandom(){
-        Card c = new Card(0, "Verkehr", "Auto", "Car", "Araba", null);
-        Card d = new Card(0, "Klamotten", "Hose", "Pants", "Pantolon", "Pantolones");
-        Card e = new Card(0, "Obst", "Apfel", "Apple", "Elma", null);
-        Card f = new Card(0, "Gemuese", "Aubergine", "Eggplant", "Patlican", null);
-        repository.save(c);
-        repository.save(d);
-        repository.save(e);
-        repository.save(f);
-    }
 }

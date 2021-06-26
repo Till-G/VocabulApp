@@ -9,6 +9,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.client.RestTemplate;
 
 @Service
@@ -29,8 +30,8 @@ public class FrontendService {
         return c.toJSON().toString();
     }
 
-    public void modifyCard(int id){
-        template.put("http://GATEWAY-SERVICE/card/" +id, Card.class);
+    public void modifyCard(int id, Card card){
+        template.put("http://GATEWAY-SERVICE/card/" +id, card);
     }
 
     public void deleteCard(int id){

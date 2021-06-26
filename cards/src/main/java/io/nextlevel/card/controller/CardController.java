@@ -62,5 +62,4 @@ public class CardController {
         return service.pushAllToQuery();
     }
 
-
 }

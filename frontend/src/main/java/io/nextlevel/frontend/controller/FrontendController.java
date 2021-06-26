@@ -37,8 +37,8 @@ public class FrontendController {
 
     @PutMapping("/card/{id}")
     @CrossOrigin(origins = "*")
-    public void modifyCard(@PathVariable("id") int id){
-        service.modifyCard(id);
+    public void modifyCard(@PathVariable("id") int id, @RequestBody Card card){
+        service.modifyCard(id, card);
     }
 
     @DeleteMapping("/card/{id}")

@@ -107,6 +107,8 @@ header label{
 	text-align: left;
 	padding: 0;
 	padding-bottom: 2rem;
+	color: #7bdceb;
+	font-size: 3.5rem;
 }
 .card form .inputBox{
 	position: relative;

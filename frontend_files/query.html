@@ -40,7 +40,7 @@
 		<div>
 		<div class="selection">
 		<label>From:</label>
-		<select name="languages" id="languages" class="languages" required>
+		<select name="flanguages" id="flanguages" class="languages" required>
 				<option value="" selected disabled>Select a language:</option>
 				<option selected="selected" value="german">Deutsch</option>
 				<!--
@@ -52,7 +52,7 @@
 		</div>
 		<div class="selection">
 		<label>To:</label>
-		<select name="languages" id="languages" class="languages" required>
+		<select name="tlanguages" id="tlanguages" class="languages" required>
 				<option value="" selected disabled>Select a language:</option>
 				<option value="german">Deutsch</option>
 				<option value="english">English</option>
@@ -64,16 +64,16 @@
 		<div>
 		<div class="selection">
 		<img style="float: left;height: 2.5rem" src="images/speedometer.png" alt="">
-		<select style="margin-left: 4px" name="languages" id="languages" class="languages" required>
+		<select style="margin-left: 4px" name="difficulty" id="difficulty" class="languages" required>
 				<option value="" selected disabled>Select a difficulty:</option>
-				<option value="german">Easy</option>
-				<option value="english">Medium</option>
-				<option value="turkish">Hard</option>
+				<option value="4">Easy</option>
+				<option value="6">Medium</option>
+				<option value="7">Hard</option>
 		</select>
 		</div>
 		</div>
 		<div>
-		<input type="submit" class="btn1" style="border: none; margin-top: 1.5rem; margin-right: 1.5rem; float: right" value="Submit">
+		<input type="button" id="submitChoice" class="btn1" style="border: none; margin-top: 1.5rem; margin-right: 1.5rem; float: right" value="Submit">
 		<a href="./learn.html" class="btn" style="border: none; margin-top: 1.5rem; margin-right: 1.5rem; float: right">Start learning session</a>
 		</div>
 		</div>
@@ -81,5 +81,56 @@
 	</section>
 	<figcaption><div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div></figcaption>
 	</form>
+	
+	<section class="translate" id="translate">
+<div class="circle"></div>
+	<div class="circle1"></div>
+		<form method="post">
+			<div class="inputBox">
+				<textarea id="ausgangWord" style="resize: none" rows="10" cols="50" readonly></textarea>
+			</div>
+		</form>
+		<form method="post">
+		<div class="image">
+		<div class="inputBox">
+			<textarea id="zielWord" style="resize: none" maxlength="5000" rows="8" cols="50" placeholder="Translation..."></textarea>
+		</div>
+		<button class="btn1" style="border: none; margin-top: 1.5rem; margin-right: 1.5rem; float: right">Next <i class="fas fa-arrow-right"></i></button>
+		<button class="btn1" style="background-color: #6df9a0;border: none; margin-top: 1.5rem; margin-right: 1.5rem; float: right">Check</button>
+		</form>
+	</section>
 </body>
 </html>
+
+<script>
+const initDetails = {
+        method: 'get',
+        headers: {
+            "Content-Type": "application/json; charset=utf-8"
+        },
+    }
+    
+    function submitChoice() {
+        fetch('http://localhost:8080/query/'+document.getElementById("flanguages").value+'/'+document.getElementById("tlanguages").value+'/'+document.getElementById("difficulty").value, initDetails)
+        .then(response => {
+            if (response.status !== 200) {
+                console.log('Looks like there was a problem. Status Code: ' +
+                response.status);
+                return;
+            }
+            return response.json();
+            }
+        )
+        .then(myJson => {
+            document.getElementById("ausgangWord").value = JSON.stringify(myJson["ausgangWord"]);
+        })
+        .catch(err => {
+            console.log('Fetch Error: ', err);
+        });
+    }
+	
+	$(document).ready(function() {
+        let myButton = document.getElementById("submitChoice");
+        myButton.addEventListener('click', submitChoice);
+	});
+</script>

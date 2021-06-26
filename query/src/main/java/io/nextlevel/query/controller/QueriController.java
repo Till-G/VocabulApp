@@ -2,6 +2,7 @@ package io.nextlevel.query.controller;
 
 import io.nextlevel.query.Entity.Queri;
 import io.nextlevel.query.Entity.Card;
+import io.nextlevel.query.common.QueriList;
 import io.nextlevel.query.service.QueriService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,15 +18,15 @@ public class QueriController {
     private QueriService service;
 
     @GetMapping("/{aLanguage}/{zLanguage}")
-    public Iterable<Queri> getAllLanguageAandZ(@PathVariable("aLanguage") String aLanguage,
-                                               @PathVariable("zLanguage") String zLanguage){
-        return service.getAllLanguageAandZ(aLanguage, zLanguage);
+    public QueriList getAllLanguageAandZ(@PathVariable("aLanguage") String aLanguage,
+                                         @PathVariable("zLanguage") String zLanguage){
+        return new QueriList(service.getAllLanguageAandZ(aLanguage, zLanguage));
     }
     @GetMapping("/{aLanguage}/{zLanguage}/{difficulty}")
-    public Iterable<Queri> query(@PathVariable("aLanguage") String aLanguage,
+    public QueriList query(@PathVariable("aLanguage") String aLanguage,
                                 @PathVariable("zLanguage") String zLanguage,
                                 @PathVariable("difficulty") int difficulty){
-        return service.query(aLanguage, zLanguage, difficulty);
+        return new QueriList(service.query(aLanguage, zLanguage, difficulty));
     }
 
     @PostMapping("/addCards")
@@ -33,11 +34,5 @@ public class QueriController {
         log.info("cardList arrived: " + cardList.toString());
         return service.addCards(cardList);
     }
-
-    @GetMapping("/test")
-    public String testy(){
-        return "COOL";
-    }
-
 
 }

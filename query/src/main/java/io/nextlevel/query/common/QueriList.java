@@ -1,13 +1,11 @@
-package io.nextlevel.frontend.common;
+package io.nextlevel.query.common;
 
+import io.nextlevel.query.Entity.Queri;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
 @NoArgsConstructor

@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CardList {
-    private List<Card> cards;
+    private Iterable<Card> cards;
 
-    public CardList() {
-        cards = new ArrayList<>();
+    public CardList(Iterable<Card> c) {
+        this.cards = c;
     }
     public JSONArray toJSON() throws JSONException {
         JSONArray jsonArray = new JSONArray();

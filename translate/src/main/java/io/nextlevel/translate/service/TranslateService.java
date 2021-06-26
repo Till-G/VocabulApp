@@ -1,6 +1,6 @@
 package io.nextlevel.translate.service;
 
-
+import io.nextlevel.translate.common.Card;
 import io.nextlevel.translate.common.CardToTranslate;
 import io.nextlevel.translate.entity.Translate;
 import io.nextlevel.translate.repository.TranslateRepository;

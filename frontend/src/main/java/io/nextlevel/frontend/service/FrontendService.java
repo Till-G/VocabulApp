@@ -20,7 +20,7 @@ public class FrontendService {
     private RestTemplate template;
 
     public String getAllCards(String language) throws JSONException {
-        CardList cardList =  template.getForObject("http://GATEWAY-SERVICE/card/library/" +language, CardList.class);
+        CardList cardList = template.getForObject("http://GATEWAY-SERVICE/card/library/" +language, CardList.class);
         return cardList.toJSON().toString();
     }
 

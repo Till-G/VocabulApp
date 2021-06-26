@@ -1,6 +1,7 @@
 package io.nextlevel.card.controller;
 
 import com.netflix.discovery.converters.Auto;
+import io.nextlevel.card.common.CardList;
 import io.nextlevel.card.entity.Card;
 import io.nextlevel.card.service.CardService;
 import lombok.RequiredArgsConstructor;
@@ -27,8 +28,8 @@ public class CardController {
     }
 
     @GetMapping("/library/{language}")
-    public Iterable<Card> getAllCardsForLanguage(@PathVariable("language") String language){
-        return service.getAllCardsForLanguage(language);
+    public CardList getAllCardsForLanguage(@PathVariable("language") String language){
+        return new CardList(service.getAllCardsForLanguage(language));
     }
     @GetMapping("/all")
     public Iterable<Card> findAll(){

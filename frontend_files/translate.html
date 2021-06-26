@@ -6,7 +6,6 @@
 	<title>VocabulApp</title>
 	
 	<script type="text/javascript" src="./script/jQuery.js"></script>
-	<script type="text/javascript" src="./script/VocabulAppAPI.js"></script>
     <script type="text/javascript" src="./script/main.js"></script>
 
 	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
@@ -53,7 +52,7 @@
 			</select>
 			
 			<div class="inputBox">
-				<input type="text" placeholder="Translation..." readonly>
+				<input id="translateWord" type="text" placeholder="Translation..." readonly>
 			</div>
 		</form>
 		<div class="image">
@@ -66,28 +65,16 @@
 </html>
 
 <script>
-const word = document.getElementById("word").value;
-console.log(word);
-
-var aLanguage = document.getElementById("alanguages");
-var alanguage = aLanguage.value;
-console.log(alanguage);
-
-var zLanguage = document.getElementById("zlanguages");
-var zlanguage = zLanguage.value;
-console.log(zlanguage);
-
-const uri = 'http://localhost:8080/translate/alanguage/zlanguage/word';
+let uri = 'http://localhost:8080/translate/'+document.getElementById("alanguages").value+'/'+document.getElementById("zlanguages").value+'/'+document.getElementById("word").value;
     const initDetails = {
         method: 'get',
         headers: {
             "Content-Type": "application/json; charset=utf-8"
         },
-        mode: "cors"
     }
     
     function getWord() {
-        fetch(uri, initDetails)
+        fetch('http://localhost:8080/translate/'+document.getElementById("alanguages").value+'/'+document.getElementById("zlanguages").value+'/'+document.getElementById("word").value, initDetails)
         .then(response => {
             if (response.status !== 200) {
                 console.log('Looks like there was a problem. Status Code: ' +
@@ -98,22 +85,15 @@ const uri = 'http://localhost:8080/translate/alanguage/zlanguage/word';
             }
         )
         .then(myJson => {
-            console.log(JSON.stringify(myJson));
+            document.getElementById("translateWord").value = JSON.stringify(myJson["zielWord"]);
         })
         .catch(err => {
             console.log('Fetch Error: ', err);
         });
     }
-    
-    window.onload=function() {
+	
+	    $(document).ready(function() {
         let myButton = document.getElementById("getWord");
         myButton.addEventListener('click', getWord);
-    }
+		});
 </script>
-<!--
- function getWord() {
-        fetch(uri, initDetails)
-			.then(res => res.json())
-			.then(data => console.log(data));
-	}
--->

@@ -66,10 +66,10 @@
 			<h1 class="heading">Edit/Delete your selected Card<br>
 			<h3>Please remove all " " before saving</h3></h1>
 			<div class="inputBox">
-				<input id="set" name="name"type="text" placeholder="Name of the set *" required>
+				<input id="set" name="name"type="text" placeholder="Name of the set *" readonly>
 			</div>
 			<div class="inputBox">
-				<input id="german" name="german" type="text" placeholder="Deutsch *" required>
+				<input id="german" name="german" type="text" placeholder="Deutsch *" readonly>
 			</div>
 			<div class="inputBox">
 				<input id="english" name="english" type="text" placeholder="English">
@@ -108,7 +108,6 @@ const initDetails = {
             }
         )
         .then(myJson => {
-            console.log(JSON.stringify(myJson));
 			if(myJson.length > 0){
 				var temp = "";
 				myJson.forEach((u)=>{
@@ -152,12 +151,12 @@ const initDetails = {
             }
         )
         .then(myJson => {
-           document.getElementById("german").value = JSON.stringify(myJson["german"]);
-			document.getElementById("spanish").value = JSON.stringify(myJson["spanish"]);
-			document.getElementById("set").value = JSON.stringify(myJson["set"]);
-			document.getElementById("turkish").value = JSON.stringify(myJson["turkish"]);
-			document.getElementById("english").value = JSON.stringify(myJson["english"]);
-			document.getElementById("id").value = JSON.stringify(myJson["id"]);
+           document.getElementById("german").value = myJson["german"];
+			document.getElementById("spanish").value = myJson["spanish"];
+			document.getElementById("set").value = myJson["set"];
+			document.getElementById("turkish").value = myJson["turkish"];
+			document.getElementById("english").value = myJson["english"];
+			document.getElementById("id").value = myJson["id"];
         })
         .catch(err => {
             console.log('Fetch Error: ', err);
@@ -203,7 +202,6 @@ const initDetails = {
 		}).then(response => {
             return response.json();
            })
-		   .then(data => console.log(data))
 		   .catch(error => console.log('Error'))
     }
 	
@@ -212,3 +210,25 @@ const initDetails = {
         myButton.addEventListener('click', saveCard);
 	});
 </script>
+<!--
+{
+				JSON.stringify("id": document.getElementById('id').value),
+				JSON.stringify("set": document.getElementById('set').value),
+				JSON.stringify("german": document.getElementById('german').value),
+				if(document.getElementById('english').value === undefined){
+					"english": document.getElementById('english').value,
+				} else{
+					JSON.stringify("english": document.getElementById('english').value),
+				}
+				if(document.getElementById('turkish').value === undefined){
+					"turkish": document.getElementById('turkish').value,
+				} else{
+					JSON.stringify("turkish": document.getElementById('turkish').value),
+				}
+				if(document.getElementById('spanish').value === undefined){
+					"spanish": document.getElementById('spanish').value
+				} else{
+					JSON.stringify("spanish": document.getElementById('spanish').value)
+				}
+			}
+-->

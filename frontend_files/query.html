@@ -103,6 +103,8 @@
 </html>
 
 <script>
+var listCards = {};
+
 const initDetails = {
         method: 'get',
         headers: {
@@ -122,8 +124,10 @@ const initDetails = {
             }
         )
         .then(myJson => {
-			console.log(JSON.stringify(myJson));
-            document.getElementById("ausgangWord").value = JSON.stringify(myJson["ausgangWord[0]"]);
+			listCards = myJson;
+			console.log(listCards);
+			console.log(listCards[0]["ausgangWord"]);
+            document.getElementById("ausgangWord").value = JSON.stringify(myJson["ausgangWord"]);
         })
         .catch(err => {
             console.log('Fetch Error: ', err);

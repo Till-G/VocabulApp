@@ -146,7 +146,7 @@ const initDetails = {
             }
         )
         .then(myJson => {
-           document.getElementById("german").value = JSON.stringify(myJson["german"]);
+           document.getElementById("german").value = myJson["german"];
 			if( myJson["spanish"] === undefined){
 				document.getElementById("spanish").value = "";
 			} else {

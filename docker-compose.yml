@@ -36,7 +36,15 @@ services:
     build:
         context: ./translate
         dockerfile: Dockerfile
-
+  
+  docker-frontend-service:
+    image: okankaya95/vocabulapp:docker-frontend-service
+    container_name: frontend-service
+    ports:
+      - "8080:8080"
+    build:
+        context: ./frontend
+        dockerfile: Dockerfile
         
   docker-gateway-service:
     image: okankaya95/vocabulapp:docker-gateway-service

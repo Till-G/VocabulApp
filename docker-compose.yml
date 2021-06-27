@@ -1,0 +1,52 @@
+version: '3'
+
+services:
+  docker-registry-service:
+    image: okankaya95/vocabulapp:docker-registry-service
+    container_name: registry-service
+    ports:
+      - "8761:8761"
+    build:
+        context: ./service-registry
+        dockerfile: Dockerfile
+
+  docker-card-service:
+    image: okankaya95/vocabulapp:docker-card-service
+    container_name: card-service
+    ports:
+      - "8093:8093"
+    build:
+        context: ./cards
+        dockerfile: Dockerfile
+        
+  docker-query-service:
+    image: okankaya95/vocabulapp:docker-query-service
+    container_name: query-service
+    ports:
+      - "8092:8092"
+    build:
+        context: ./query
+        dockerfile: Dockerfile    
+        
+  docker-translate-service:
+    image: okankaya95/vocabulapp:docker-translate-service
+    container_name: translate-service
+    ports:
+      - "8090:8090"
+    build:
+        context: ./translate
+        dockerfile: Dockerfile
+
+        
+  docker-gateway-service:
+    image: okankaya95/vocabulapp:docker-gateway-service
+    container_name: gateway-service
+    ports:
+      - "8989:8989"
+    build:
+      context: ./api-gateway
+      dockerfile: Dockerfile
+    depends_on:
+      - docker-card-service
+      - docker-query-service
+      - docker-translate-service

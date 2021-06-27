@@ -96,7 +96,7 @@
 			<textarea id="zielWord" style="resize: none" maxlength="5000" rows="8" cols="50" placeholder="Translation..."></textarea>
 		</div>
 		<button class="btn1" style="border: none; margin-top: 1.5rem; margin-right: 1.5rem; float: right">Next <i class="fas fa-arrow-right"></i></button>
-		<button class="btn1" style="background-color: #6df9a0;border: none; margin-top: 1.5rem; margin-right: 1.5rem; float: right">Check</button>
+		<input type="button" class="btn1" id="checkSolution" style="background-color: #6df9a0;border: none; margin-top: 1.5rem; margin-right: 1.5rem; float: right" value="Check"></input>
 		</form>
 	</section>
 </body>
@@ -104,7 +104,9 @@
 
 <script>
 var listCards = {};
-
+var checked = false;
+queryWord = null
+counter = 0
 const initDetails = {
         method: 'get',
         headers: {
@@ -124,18 +126,45 @@ const initDetails = {
             }
         )
         .then(myJson => {
-			listCards = myJson;
-			console.log(listCards);
-			console.log(listCards[0]["ausgangWord"]);
-            document.getElementById("ausgangWord").value = JSON.stringify(myJson["ausgangWord"]);
+			listCards = myJson
+			queryWord = listCards[0]
+			showWord();
         })
         .catch(err => {
             console.log('Fetch Error: ', err);
         });
     }
+
+
+	function showWord(){
+		
+		checked = false;
+		document.getElementById("ausgangWord").style.backgroundColor = 'white';
+		document.getElementById("zielWord").value = "";
+		document.getElementById("ausgangWord").value = queryWord["ausgangWord"];
+		var zielWord = queryWord["zielWord"].toLowerCase();
+	}
+
+	function check()
+	{
+		var zWord = document.getElementById("zielWord").value.toLowerCase();
+			if(queryWord["zielWord"].toLowerCase() == zWord){
+				console.log("Wort richtig");
+				counter++;
+				queryWord = listCards[counter];
+			}
+		showWord();
+		console.log(counter)
+		console.log(queryWord)
+	}
+		
+	
 	
 	$(document).ready(function() {
         let myButton = document.getElementById("submitChoice");
         myButton.addEventListener('click', submitChoice);
+
+		let myButton2 = document.getElementById("checkSolution");
+		myButton2.addEventListener('click', check);
 	});
 </script>

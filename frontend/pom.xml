@@ -78,6 +78,7 @@
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>docker-frontend-service</finalName>
     </build>
 
 </project>

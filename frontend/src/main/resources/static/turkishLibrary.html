@@ -6,8 +6,6 @@
 	<title>VocabulApp</title>
 	
 	<script type="text/javascript" src="./script/jQuery.js"></script>
-	<script type="text/javascript" src="./script/VocabulAppAPI.js"></script>
-    <script type="text/javascript" src="script/main.js"></script>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
@@ -22,14 +20,14 @@
 
 <!--header section-->
 <header>
-	<a href="./home.html"><img src="images/LogoVS.jpg" class="logo"></a>
+	<a href="./index.html"><img src="images/LogoVS.jpg" class="logo"></a>
 	
 	<input type="checkbox" id="menu-bar">
 	<label for="menu-bar" class="fas fa-bars"></label>	
 	
 	<nav class="navbar">
 		<a class="create" style="color: white" href="./card.html">Create</a>
-		<a href="./home.html">Home</a>
+		<a href="./index.html">Home</a>
 		<a style="color: #ffb090" href="./library.html">Library</a>
 		<a href="./translate.html">Translate</a>
 		<a href="./query.html">Query</a>
@@ -55,6 +53,36 @@
 		</tr>
 		</tbody>
 	</table>
+	
+	<div class="inputBox">
+		<label>Which ID do you want to edit or delete?</label>
+		<input id="id" type="text" style="text-align: center; margin-left: 1rem" required>
+		<button id="getEditDelete" class="btn1" style="border: none;float: right">Edit/Delete</button>
+	</div>
+	<section class="card" id="card">
+	<form id="cardForm">
+			<h1 class="heading">Edit/Delete your selected Card<br></h1>
+			<div class="inputBox">
+				<input id="set" name="name"type="text" placeholder="Name of the set *" required>
+			</div>
+			<div class="inputBox">
+				<input id="german" name="german" type="text" placeholder="Deutsch *" required>
+			</div>
+			<div class="inputBox">
+				<input id="english" name="english" type="text" placeholder="English">
+			</div>
+			<div class="inputBox">
+				<input id="turkish" name="turkish" type="text" placeholder="Türkçe">
+			</div>
+			<div class="inputBox">
+				<input id="spanish" name="spanish" type="text" placeholder="Español">
+			</div>
+			<input id="saveCard" type="submit" class="btn1" style="border: none; float: right" value="Save">
+			<input id="deleteCard" type="submit" class="btn1" style="border: none; float: right; margin-right: .5rem" value="Delete">
+			<input class="btn1" type="reset" style="background-color: #ff8585" value="Reset">
+		</form>
+		</section>
+	</div>
 	</div>
 
 </body>
@@ -105,5 +133,104 @@ const initDetails = {
         .catch(err => {
             console.log('Fetch Error: ', err);
         });
+		
+		//get card with the ID
+	function getEditDelete() {
+        fetch('http://localhost:8080/card/'+document.getElementById("id").value, initDetails)
+        .then(response => {
+            if (response.status !== 200) {
+                console.log('Looks like there was a problem. Status Code: ' +
+                response.status);
+                return;
+            }
+            return response.json();
+            }
+        )
+        .then(myJson => {
+           document.getElementById("german").value = JSON.stringify(myJson["german"]);
+			if( myJson["spanish"] === undefined){
+				document.getElementById("spanish").value = "";
+			} else {
+				document.getElementById("spanish").value = myJson["spanish"];
+			}
+			if( myJson["english"] === undefined){
+				document.getElementById("english").value = "";
+			} else {
+				document.getElementById("english").value = myJson["english"];
+			}
+			if( myJson["turkish"] === undefined){
+				document.getElementById("turkish").value = "";
+			} else {
+				document.getElementById("turkish").value = myJson["turkish"];
+			}
+			document.getElementById("set").value = myJson["set"];
+			document.getElementById("id").value = JSON.stringify(myJson["id"]);
+        })
+        .catch(err => {
+            console.log('Fetch Error: ', err);
+        });
+    }
+	
+	$(document).ready(function() {
+        let myButton = document.getElementById("getEditDelete");
+        myButton.addEventListener('click', getEditDelete);
+	});
+	
+	//Delete Card with the ID
+	function deleteCard() {
+        fetch('http://localhost:8080/card/'+document.getElementById("id").value,{
+			method: 'DELETE'
+		}).then(response => {
+            return response.json();
+           })
+		   .then(data => console.log(data))
+		   .catch(error => console.log('Error'))
+    }
+	
+	$(document).ready(function() {
+        let myButton = document.getElementById("deleteCard");
+        myButton.addEventListener('click', deleteCard);
+	});
+	
+	//Put Card with the ID 
+	function saveCard() {
+		var englishV;
+		var spanishV;
+		var turkishV;
+		if(document.getElementById('english').value == ""){
+			englishV = undefined
+		} else {
+			englishV = document.getElementById('english').value
+		}
+		if(document.getElementById('turkish').value == ""){
+			turkishV = undefined
+		} else {
+			turkishV = document.getElementById('turkish').value
+		}
+		if(document.getElementById('spanish').value == ""){
+			spanishV = undefined
+		} else {
+			spanishV = document.getElementById('spanish').value
+		}
+        fetch('http://localhost:8080/card/'+document.getElementById("id").value,{
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+			    "id": document.getElementById('id').value,
+				"set": document.getElementById('set').value,
+				"german": document.getElementById('german').value,
+				"english": englishV,
+				"turkish": turkishV,
+				"spanish": spanishV
+			})
+		})
+    }
+	
+	$(document).ready(function() {
+        let myButton = document.getElementById("saveCard");
+        myButton.addEventListener('click', saveCard);
+	});
 	
 </script>

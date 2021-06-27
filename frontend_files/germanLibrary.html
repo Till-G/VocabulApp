@@ -77,8 +77,8 @@
 			<div class="inputBox">
 				<input id="spanish" name="spanish" type="text" placeholder="Español">
 			</div>
-			<input id="saveCard" type="button" class="btn1" style="border: none; float: right" value="Save">
-			<input id="deleteCard" type="button" class="btn1" style="border: none; float: right; margin-right: .5rem" value="Delete">
+			<input id="saveCard" type="submit" class="btn1" style="border: none; float: right" value="Save">
+			<input id="deleteCard" type="submit" class="btn1" style="border: none; float: right; margin-right: .5rem" value="Delete">
 			<input class="btn1" type="reset" style="background-color: #ff8585" value="Reset">
 		</form>
 		</section>
@@ -150,10 +150,22 @@ const initDetails = {
         )
         .then(myJson => {
            document.getElementById("german").value = myJson["german"];
-			document.getElementById("spanish").value = myJson["spanish"];
+			if( myJson["spanish"] === undefined){
+				document.getElementById("spanish").value = "";
+			} else {
+				document.getElementById("spanish").value = myJson["spanish"];
+			}
+			if( myJson["english"] === undefined){
+				document.getElementById("english").value = "";
+			} else {
+				document.getElementById("english").value = myJson["english"];
+			}
+			if( myJson["turkish"] === undefined){
+				document.getElementById("turkish").value = "";
+			} else {
+				document.getElementById("turkish").value = myJson["turkish"];
+			}
 			document.getElementById("set").value = myJson["set"];
-			document.getElementById("turkish").value = myJson["turkish"];
-			document.getElementById("english").value = myJson["english"];
 			document.getElementById("id").value = myJson["id"];
         })
         .catch(err => {
@@ -184,6 +196,25 @@ const initDetails = {
 	
 	//Put Card with the ID 
 	function saveCard() {
+		var englishV;
+		var spanishV;
+		var turkishV;
+		if(document.getElementById('english').value == ""){
+			englishV = undefined
+		} else {
+			englishV = document.getElementById('english').value
+		}
+		if(document.getElementById('turkish').value == ""){
+			turkishV = undefined
+		} else {
+			turkishV = document.getElementById('turkish').value
+		}
+		if(document.getElementById('spanish').value == ""){
+			spanishV = undefined
+		} else {
+			spanishV = document.getElementById('spanish').value
+		}
+
         fetch('http://localhost:8080/card/'+document.getElementById("id").value,{
 			method: 'PUT',
 			headers: {
@@ -193,14 +224,11 @@ const initDetails = {
 			    "id": document.getElementById('id').value,
 				"set": document.getElementById('set').value,
 				"german": document.getElementById('german').value,
-				"english": document.getElementById('english').value,
-				"turkish": document.getElementById('turkish').value,
-				"spanish": document.getElementById('spanish').value
+				"english": englishV,
+				"turkish": turkishV,
+				"spanish": spanishV
 			})
-		}).then(response => {
-            return response.json();
-           })
-		   .catch(error => console.log('Error'))
+		})
     }
 	
 	$(document).ready(function() {

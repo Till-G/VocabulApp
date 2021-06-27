@@ -6,103 +6,89 @@
 	<title>VocabulApp</title>
 	
 	<script type="text/javascript" src="./script/jQuery.js"></script>
-	<script type="text/javascript" src="./script/VocabulAppAPI.js"></script>
-    <script type="text/javascript" src="./script/main.js"></script>
 
 	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 	<link rel="stylesheet" href="css/query.css">
 </head>
 <body>
+
 <!--header section-->
 <header>
-	<a href="./home.html"><img src="images/LogoVS.jpg" class="logo"></a>
+	<a href="./index.html"><img src="images/LogoVS.jpg" class="logo"></a>
 	
 	<input type="checkbox" id="menu-bar">
 	<label for="menu-bar" class="fas fa-bars"></label>	
 	
 	<nav class="navbar">
 		<a class="create" style="color: white" href="./card.html">Create</a>
-		<a href="./home.html">Home</a>
+		<a href="./index.html">Home</a>
 		<a href="./library.html">Library</a>
 		<a href="./translate.html">Translate</a>
 		<a style="color: #ffb090" href="./query.html">Query</a>
 	</nav>
 </header>
 
-
-<!--query section-->
-	<div class="circle"></div>
-	<div class="circle1"></div>
-	<form>
-	<section class="query" id="query">
-	<div class="box-container">
-		<div class="box">
-		<div>
+<!--translate section-->
+	<section class="translate" id="translate">
+		<form method="post">
+		<h2 style="margin-bottom: 1.5rem; text-align: center">Choose the two languages ​​you want to learn<br> and a difficulty</h2>
+		<div></div>
 		<div class="selection">
 		<label>From:</label>
-		<select name="flanguages" id="flanguages" class="languages" required>
+			<select id="flanguages"class="languages" required>
 				<option value="" selected disabled>Select a language:</option>
-				<option selected="selected" value="german">Deutsch</option>
-				<!--
-				<option value="english">English</option>
-				<option value="turkish">Türkçe</option>
-				<option value="spanish">Español</option>
-				-->
-		</select>
+				<option selected="selected"  value="german">Deutsch</option>
+			</select>
 		</div>
 		<div class="selection">
 		<label>To:</label>
-		<select name="tlanguages" id="tlanguages" class="languages" required>
+			<select style="margin-top: 2rem; margin-left: 1.4rem"id="tlanguages" class="languages" required>
 				<option value="" selected disabled>Select a language:</option>
-				<option value="german">Deutsch</option>
 				<option value="english">English</option>
 				<option value="turkish">Türkçe</option>
 				<option value="spanish">Español</option>
-		</select>
+			</select>
 		</div>
-		</div>
-		<div>
 		<div class="selection">
-		<img style="float: left;height: 2.5rem" src="images/speedometer.png" alt="">
-		<select style="margin-left: 4px" name="difficulty" id="difficulty" class="languages" required>
+		<img style="margin-top: 2rem;float: left;height: 2.5rem" src="images/speedometer.png" alt="">
+		<select style="margin-top: 2rem; margin-left: 4px" name="difficulty" id="difficulty" class="languages" required>
 				<option value="" selected disabled>Select a difficulty:</option>
 				<option value="4">Easy</option>
 				<option value="6">Medium</option>
 				<option value="7">Hard</option>
 		</select>
+		<input type="button" id="submitChoice" class="btn1" style="border: none; margin-top: 1.4rem; margin-right: 2rem; float: right" value="Submit">
 		</div>
-		</div>
-		<div>
-		<input type="button" id="submitChoice" class="btn1" style="border: none; margin-top: 1.5rem; margin-right: 1.5rem; float: right" value="Submit">
-		<a href="./learn.html" class="btn" style="border: none; margin-top: 1.5rem; margin-right: 1.5rem; float: right">Start learning session</a>
-		</div>
-		</div>
+		</form>
+		<div class="image">
+			<img src="images/learn.jpg" alt="">
+			<figcaption style="margin-left: 90px"><a href='https://de.freepik.com/fotos-vektoren-kostenlos/infografik'>Infografik Vektor erstellt von vectorjuice - de.freepik.com</a></figcaption>
 		</div>
 	</section>
-	<figcaption><div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div></figcaption>
-	</form>
 	
 	<section class="translate" id="translate">
-<div class="circle"></div>
-	<div class="circle1"></div>
 		<form method="post">
-			<div class="inputBox">
+			<div style="margin-right: 1rem"class="inputBox">
 				<textarea id="ausgangWord" style="resize: none" rows="10" cols="50" readonly></textarea>
 			</div>
 		</form>
-		<form method="post">
-		<div class="image">
+		<form style="margin-left: 2rem" method="post">
 		<div class="inputBox">
 			<textarea id="zielWord" style="resize: none" maxlength="5000" rows="8" cols="50" placeholder="Translation..."></textarea>
+			<p id="rightAnswer"></p>
 		</div>
-		<button class="btn1" style="border: none; margin-top: 1.5rem; margin-right: 1.5rem; float: right">Next <i class="fas fa-arrow-right"></i></button>
-		<button class="btn1" style="background-color: #6df9a0;border: none; margin-top: 1.5rem; margin-right: 1.5rem; float: right">Check</button>
+		<input class="btn1" type="reset" style="background-color: #ff8585" value="Reset">
+		<input type="button" class="btn1" id="checkSolution" style="background-color: #6df9a0;border: none; margin-top: 1.5rem; margin-right: 1.5rem; float: right" value="Check"></input>
 		</form>
 	</section>
 </body>
 </html>
 
 <script>
+var listCards = {};
+var checked = false;
+queryWord = null
+counter = 0
 const initDetails = {
         method: 'get',
         headers: {
@@ -122,15 +108,43 @@ const initDetails = {
             }
         )
         .then(myJson => {
-            document.getElementById("ausgangWord").value = JSON.stringify(myJson["ausgangWord"]);
+			listCards = myJson
+			queryWord = listCards[0]
+			showWord();
         })
         .catch(err => {
             console.log('Fetch Error: ', err);
         });
     }
+
+
+	function showWord(){
+		
+		checked = false;
+		document.getElementById("ausgangWord");
+		document.getElementById("zielWord").value = "";
+		document.getElementById("ausgangWord").value = queryWord["ausgangWord"];
+		var zielWord = queryWord["zielWord"].toLowerCase();
+	}
+
+	function check()
+	{
+		var zWord = document.getElementById("zielWord").value.toLowerCase();
+			if(queryWord["zielWord"].toLowerCase() == zWord){
+				$("#rightAnswer").text("Your answer was correct").css("color", "green"); 
+				counter++;
+				queryWord = listCards[counter];
+			}
+		showWord();
+	}
+		
+	
 	
 	$(document).ready(function() {
         let myButton = document.getElementById("submitChoice");
         myButton.addEventListener('click', submitChoice);
+
+		let myButton2 = document.getElementById("checkSolution");
+		myButton2.addEventListener('click', check);
 	});
 </script>

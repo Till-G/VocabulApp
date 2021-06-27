@@ -77,7 +77,6 @@
 			<textarea id="zielWord" style="resize: none" maxlength="5000" rows="8" cols="50" placeholder="Translation..."></textarea>
 			<p id="rightAnswer"></p>
 		</div>
-		<input class="btn1" type="reset" style="background-color: #ff8585" value="Reset">
 		<input type="button" class="btn1" id="checkSolution" style="background-color: #6df9a0;border: none; margin-top: 1.5rem; margin-right: 1.5rem; float: right" value="Check"></input>
 		</form>
 	</section>
@@ -134,6 +133,9 @@ const initDetails = {
 				$("#rightAnswer").text("Your answer was correct").css("color", "green"); 
 				counter++;
 				queryWord = listCards[counter];
+			}
+			else{
+				$("#rightAnswer").text("Your answer was incorrect").css("color", "red");
 			}
 		showWord();
 	}

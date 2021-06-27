@@ -84,7 +84,8 @@
             }
         )
         .then(myJson => {
-            document.getElementById("translateWord").value = JSON.stringify(myJson["zielWord"]);
+			var translated = "\"zielWord\"";
+            document.getElementById("translateWord").value = JSON.stringify(myJson[translated.replace(/\"/g, "")]);
         })
         .catch(err => {
             console.log('Fetch Error: ', err);

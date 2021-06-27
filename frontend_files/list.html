@@ -86,7 +86,7 @@
     }
     
     function getCard() {
-        fetch('http://localhost:8080/card/17', initDetails)
+        fetch('http://localhost:8080/card/14', initDetails)
         .then(response => {
             if (response.status !== 200) {
                 console.log('Looks like there was a problem. Status Code: ' +
@@ -115,7 +115,7 @@
 	});
 	
 	function deleteCard() {
-        fetch('http://localhost:8080/card/17',{
+        fetch('http://localhost:8080/card/14',{
 			method: 'DELETE'
 		}).then(response => {
             return response.json();
@@ -130,7 +130,7 @@
 	});
 	
 		 function putCard() {
-        fetch('http://localhost:8080/card/17',{
+        fetch('http://localhost:8080/card/14',{
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json'

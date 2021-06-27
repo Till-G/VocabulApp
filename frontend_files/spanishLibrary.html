@@ -55,6 +55,34 @@
 		</tr>
 		</tbody>
 	</table>
+	
+	<div class="inputBox">
+		<label>Which ID do you want to edit or delete?</label>
+		<input id="id" type="text" style="text-align: center; margin-left: 1rem" required>
+		<button id="getEditDelete" class="btn1" style="border: none;float: right">Edit/Delete</button>
+	</div>
+	<section class="card" id="card">
+	<form id="cardForm">
+			<h1 class="heading">Edit/Delete your selected Card</h1>
+			<div class="inputBox">
+				<input id="set" name="name"type="text" placeholder="Name of the set *" required>
+			</div>
+			<div class="inputBox">
+				<input id="german" name="german" type="text" placeholder="Deutsch *" required>
+			</div>
+			<div class="inputBox">
+				<input id="english" name="english" type="text" placeholder="English">
+			</div>
+			<div class="inputBox">
+				<input id="turkish" name="turkish" type="text" placeholder="Türkçe">
+			</div>
+			<div class="inputBox">
+				<input id="spanish" name="spanish" type="text" placeholder="Español">
+			</div>
+			<input id="saveCard" type="button" class="btn1" style="border: none; float: right" value="Save">
+			<input id="deleteCard" type="button" class="btn1" style="border: none; float: right; margin-right: 1rem" value="Delete">
+		</form>
+		</section>
 	</div>
 
 </body>
@@ -88,8 +116,16 @@ const initDetails = {
 					temp += "<td>"+u.set+"</td>";
 					temp += "<td>"+u.spanish+"</td>";
 					temp += "<td>"+u.german+"</td>";
-					temp += "<td>"+u.english+"</td>";
-					temp += "<td>"+u.turkish+"</td></tr>";
+					if(u.english === undefined ){
+						temp += "<td>"+"-"+"</td>";
+					} else {
+						temp += "<td>"+u.english+"</td>";
+					}
+					if(u.turkish === undefined){
+						temp += "<td>"+"-"+"</td>";
+					} else {
+						temp += "<td>"+u.turkish+"</td>";
+					}
 				})
 				document.getElementById("data").innerHTML = temp;
 			}
@@ -97,5 +133,78 @@ const initDetails = {
         .catch(err => {
             console.log('Fetch Error: ', err);
         });
+		
+			//get card with the ID
+	function getEditDelete() {
+        fetch('http://localhost:8080/card/'+document.getElementById("id").value, initDetails)
+        .then(response => {
+            if (response.status !== 200) {
+                console.log('Looks like there was a problem. Status Code: ' +
+                response.status);
+                return;
+            }
+            return response.json();
+            }
+        )
+        .then(myJson => {
+           document.getElementById("german").value = JSON.stringify(myJson["german"]);
+			document.getElementById("spanish").value = JSON.stringify(myJson["spanish"]);
+			document.getElementById("set").value = JSON.stringify(myJson["set"]);
+			document.getElementById("turkish").value = JSON.stringify(myJson["turkish"]);
+			document.getElementById("english").value = JSON.stringify(myJson["english"]);
+			document.getElementById("id").value = JSON.stringify(myJson["id"]);
+        })
+        .catch(err => {
+            console.log('Fetch Error: ', err);
+        });
+    }
+	
+	$(document).ready(function() {
+        let myButton = document.getElementById("getEditDelete");
+        myButton.addEventListener('click', getEditDelete);
+	});
+	
+	//Delete Card with the ID
+	function deleteCard() {
+        fetch('http://localhost:8080/card/'+document.getElementById("id").value,{
+			method: 'DELETE'
+		}).then(response => {
+            return response.json();
+           })
+		   .then(data => console.log(data))
+		   .catch(error => console.log('Error'))
+    }
+	
+	$(document).ready(function() {
+        let myButton = document.getElementById("deleteCard");
+        myButton.addEventListener('click', deleteCard);
+	});
+	
+	//Put Card with the ID 
+	function saveCard() {
+        fetch('http://localhost:8080/card/'+document.getElementById("id").value,{
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+			    "id": document.getElementById('id').value,
+				"set": document.getElementById('set').value,
+				"german": document.getElementById('german').value,
+				"english": document.getElementById('english').value,
+				"turkish": document.getElementById('turkish').value,
+				"spanish": document.getElementById('spanish').value
+			})
+		}).then(response => {
+            return response.json();
+           })
+		   .then(data => console.log(data))
+		   .catch(error => console.log('Error'))
+    }
+	
+	$(document).ready(function() {
+        let myButton = document.getElementById("saveCard");
+        myButton.addEventListener('click', saveCard);
+	});
 	
 </script>

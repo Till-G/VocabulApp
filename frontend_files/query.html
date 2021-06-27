@@ -111,7 +111,7 @@ const initDetails = {
     }
     
     function submitChoice() {
-        fetch('http://localhost:8080/query/'+document.getElementById("flanguages").value+'/'+document.getElementById("tlanguages").value+'/'+document.getElementById("difficulty").value, initDetails)
+        fetch('http://localhost:8080/query/'+document.getElementById("flanguages").value+'/'+document.getElementById("tlanguages").value, initDetails)
         .then(response => {
             if (response.status !== 200) {
                 console.log('Looks like there was a problem. Status Code: ' +

@@ -6,30 +6,23 @@
 	<title>VocabulApp</title>
 	
 	<script type="text/javascript" src="./script/jQuery.js"></script>
-	<script type="text/javascript" src="./script/VocabulAppAPI.js"></script>
-    <script type="text/javascript" src="script/main.js"></script>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 	<link rel="stylesheet" href="css/englishLibrary.css">
-	<style>
-		th{
-			color: #333;
-		}
-	</style>
 </head>
 <body>
 
 <!--header section-->
 <header>
-	<a href="./home.html"><img src="images/LogoVS.jpg" class="logo"></a>
+	<a href="./index.html"><img src="images/LogoVS.jpg" class="logo"></a>
 	
 	<input type="checkbox" id="menu-bar">
 	<label for="menu-bar" class="fas fa-bars"></label>	
 	
 	<nav class="navbar">
 		<a class="create" style="color: white" href="./card.html">Create</a>
-		<a href="./home.html">Home</a>
+		<a href="./index.html">Home</a>
 		<a style="color: #ffb090" href="./library.html">Library</a>
 		<a href="./translate.html">Translate</a>
 		<a href="./query.html">Query</a>
@@ -63,8 +56,7 @@
 	</div>
 	<section class="card" id="card">
 	<form id="cardForm">
-			<h1 class="heading">Edit/Delete your selected Card<br>
-			<h3>Please remove all " " before saving</h3></h1>
+			<h1 class="heading">Edit/Delete your selected Card<br></h1>
 			<div class="inputBox">
 				<input id="set" name="name"type="text" placeholder="Name of the set *" required>
 			</div>
@@ -81,7 +73,8 @@
 				<input id="spanish" name="spanish" type="text" placeholder="Español">
 			</div>
 			<input id="saveCard" type="button" class="btn1" style="border: none; float: right" value="Save">
-			<input id="deleteCard" type="button" class="btn1" style="border: none; float: right; margin-right: 1rem" value="Delete">
+			<input id="deleteCard" type="button" class="btn1" style="border: none; float: right; margin-right: .5rem" value="Delete">
+			<input class="btn1" type="reset" style="background-color: #ff8585" value="Reset">
 		</form>
 		</section>
 	</div>
@@ -148,12 +141,12 @@ const initDetails = {
             }
         )
         .then(myJson => {
-           document.getElementById("german").value = JSON.stringify(myJson["german"]);
-			document.getElementById("spanish").value = JSON.stringify(myJson["spanish"]);
-			document.getElementById("set").value = JSON.stringify(myJson["set"]);
-			document.getElementById("turkish").value = JSON.stringify(myJson["turkish"]);
-			document.getElementById("english").value = JSON.stringify(myJson["english"]);
-			document.getElementById("id").value = JSON.stringify(myJson["id"]);
+           document.getElementById("german").value = myJson["german"];
+			document.getElementById("spanish").value = myJson["spanish"];
+			document.getElementById("set").value = myJson["set"];
+			document.getElementById("turkish").value = myJson["turkish"];
+			document.getElementById("english").value = myJson["english"];
+			document.getElementById("id").value = myJson["id"];
         })
         .catch(err => {
             console.log('Fetch Error: ', err);

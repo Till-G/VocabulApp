@@ -6,51 +6,22 @@
 	<title>VocabulApp</title>
 	
 	<script type="text/javascript" src="./script/jQuery.js"></script>
-	<script type="text/javascript" src="./script/VocabulAppAPI.js"></script>
-    <script type="text/javascript" src="./script/main.js"></script>
 
 	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 	<link rel="stylesheet" href="css/card.css">
-	<!--
-	<script>
-		const card = {
-			id: 0,
-			set: 'irem',
-			german: 'irem',
-			english: 'irem',
-			turkish: 'irem',
-			spanish: 'irem',
-		};
-		
-		fetch('http://localhost:8989/card/add', {
-			method: 'post',
-			body: JSON.stringify(card),
-			headers: {
-				'Content-Type': 'application/json'
-			}
-		}).then(function (response){
-			return response.text();
-		}).then(function (text){
-			console.log(text);
-		}).catch(function (error){
-			console.error(error);
-		})
-	
-	</script>
-	-->
 </head>
 <body>
 
 <!--header section-->
 <header>
-	<a href="./home.html"><img src="images/LogoVS.jpg" class="logo"></a>
+	<a href="./index.html"><img src="images/LogoVS.jpg" class="logo"></a>
 	
 	<input type="checkbox" id="menu-bar">
 	<label for="menu-bar" class="fas fa-bars"></label>	
 	
 	<nav class="navbar">
 		<a class="create" style="color: white" href="./card.html">Create</a>
-		<a href="./home.html">Home</a>
+		<a href="./index.html">Home</a>
 		<a href="./library.html">Library</a>
 		<a href="./translate.html">Translate</a>
 		<a href="./query.html">Query</a>
@@ -64,7 +35,7 @@
 			<figcaption style="margin-left: 90px"><a href="https://de.freepik.com/fotos-vektoren-kostenlos/geschaeft" style="text-decoration: none; font-size: 8;">Geschäft Vektor erstellt von vectorjuice - de.freepik.com</a></figcaption>
 		</div>
 		
-		<form id="cardForm">
+		<form name="cardForm" id="cardForm">
 			<h1 class="heading">Create a new card<br>
 			<h2>Please enter a name for the set and a german word</h2></h1>
 			<div class="inputBox">
@@ -82,6 +53,7 @@
 			<div class="inputBox">
 				<input id="spanish" name="spanish" type="text" placeholder="Español">
 			</div>
+			 <input class="btn1" type="reset" style="background-color: #ff8585" value="Reset">
 			<input id="saveCard" type="button" class="btn" style="border: none; float: right" value="Save">
 		</form>
 	</section>
